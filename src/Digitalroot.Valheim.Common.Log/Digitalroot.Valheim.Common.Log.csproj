@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;net462;net472;net48</TargetFrameworks>
+    <PackageId>Digitalroot.Valheim.Common.Log</PackageId>
+    <RootNamespace>Digitalroot.Valheim.Common</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
+    <Copyright>Copyright © Digitalroot Technologies 2021</Copyright>
+    <PackageProjectUrl>https://github.com/Digitalroot-Valheim/Digitalroot.Valheim.Common.Log</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Digitalroot-Valheim/Digitalroot.Valheim.Common.Log</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>ValheimRcon_black.png</PackageIcon>
+    <PackageIconUrl />
+    <PackageTags>valheim, digitalroot, log, logging</PackageTags>
+    <Authors>Digitalroot</Authors>
+    <Company>Digitalroot Technologies</Company>
+    <Product>Digitalroot Valheim Logging</Product>
+    <Description>Logging for Valheim</Description>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageVersion>1.0.0</PackageVersion>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\ico\ValheimRcon_black.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Digitalroot.Valheim.Common.Json" Version="1.0.0" />
+    <PackageReference Include="Pfhoenix.Valheim.ModProjectReferences" Version="1.0.6" />
+  </ItemGroup>
+
+</Project>
