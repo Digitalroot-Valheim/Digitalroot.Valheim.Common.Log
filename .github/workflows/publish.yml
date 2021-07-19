@@ -27,6 +27,12 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - name: List files in the src repository
+        run: |
+          ls ${{ github.workspace }}/src
+      - name: List files in the src/Digitalroot.Valheim.Common.Log repository
+        run: |
+          ls ${{ github.workspace }}/src/Digitalroot.Valheim.Common.Log           
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: dotnet build --configuration Release src/Digitalroot.Valheim.Common.Log/Digitalroot.Valheim.Common.Log.csproj
       - name: Create the package
