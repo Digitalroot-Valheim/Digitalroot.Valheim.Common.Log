@@ -77,10 +77,10 @@ namespace Digitalroot.Valheim.Common
       }
     }
 
-    public void SetSource(string source)
+    public static void SetSource(string source)
     {
-      _source = source;
-      Init();
+      Instance._source = source;
+      Instance.Init();
     }
     
     #region Trace
