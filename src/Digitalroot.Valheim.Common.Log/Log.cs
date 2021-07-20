@@ -3,20 +3,20 @@ using BepInEx.Logging;
 using JetBrains.Annotations;
 using System;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Timers;
 
 namespace Digitalroot.Valheim.Common
 {
   /// <summary>
-  /// Source: https://github.com/Digitalroot/digitalroot-valheim-mods/blob/main/Digitalroot.Valheim.Common/Log.cs
   /// License: "GNU Affero General Public License v3.0"
-  /// License ref: https://github.com/Digitalroot/digitalroot-valheim-mods/blob/main/LICENSE
   /// </summary>
   public sealed class Log : IDisposable
   {
     private ManualLogSource _loggerRef;
     private string _source = nameof(Digitalroot);
+    private const int FlushTick = 300;
 
     private static Log Instance { get; } = new Log();
 
@@ -56,7 +56,7 @@ namespace Digitalroot.Valheim.Common
       }
 
       _loggerRef = Logger.CreateLogSource(_source);
-      _traceFileInfo = new FileInfo(Path.Combine(Paths.BepInExRootPath, $"{Instance._source}.Trace.log"));
+      _traceFileInfo = new FileInfo(Path.Combine(Paths.BepInExRootPath ?? AssemblyDirectory.FullName, $"{_source}.Trace.log"));
 
       if (_traceFileInfo.Exists)
       {
@@ -64,15 +64,15 @@ namespace Digitalroot.Valheim.Common
         _traceFileInfo.Refresh();
       }
 
-      _timer = new System.Timers.Timer(3000)
-      {
-        AutoReset = true,
-        Enabled = true
-      };
-      _timer.Elapsed += TimerElapsed;
-
       if (IsTraceEnabled)
       {
+        _timer = new System.Timers.Timer(FlushTick)
+        {
+          AutoReset = true,
+          Enabled = true
+        };
+        _timer.Elapsed += TimerElapsed;
+
         StartTrace();
       }
     }
@@ -98,8 +98,20 @@ namespace Digitalroot.Valheim.Common
     {
       lock (FileLock)
       {
+        if (_fileStream != null && !_fileStream.CanWrite)
+        {
+          _fileStream = null;
+          _streamWriter = null;
+          _timer = null;
+        }
+
         if (_fileStream == null) _fileStream = new FileStream(_traceFileInfo.FullName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read, 4096, FileOptions.WriteThrough);
         if (_streamWriter == null) _streamWriter = new StreamWriter(_fileStream, Encoding.UTF8, 4096);
+
+        if (_timer == null)
+        {
+          _timer = new System.Timers.Timer(FlushTick);
+        }
 
         _timer.Start();
         _loggerRef.LogEvent += OnLogEvent;
@@ -134,7 +146,7 @@ namespace Digitalroot.Valheim.Common
     {
       lock (FileLock)
       {
-        _streamWriter.Flush();
+        _streamWriter?.Flush();
       }
     }
 
@@ -150,6 +162,19 @@ namespace Digitalroot.Valheim.Common
     {
       Instance.StopTrace();
       IsTraceEnabled = false;
+    }
+
+    public static void ToggleTrace(bool value)
+    {
+      switch (value)
+      {
+        case true:
+          EnableTrace();
+          break;
+        default:
+          DisableTrace();
+          break;
+      }
     }
 
     #endregion
@@ -248,6 +273,17 @@ namespace Digitalroot.Valheim.Common
     public static void OnDestroy()
     {
       Instance.Dispose();
+    }
+
+    private static DirectoryInfo AssemblyDirectory
+    {
+      get
+      {
+        string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+        UriBuilder uri = new UriBuilder(codeBase);
+        var fileInfo = new FileInfo(Uri.UnescapeDataString(uri.Path));
+        return fileInfo.Directory;
+      }
     }
   }
 }

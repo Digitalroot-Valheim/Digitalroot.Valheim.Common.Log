@@ -33,9 +33,12 @@ jobs:
       - name: List files in the src/Digitalroot.Valheim.Common.Log repository
         run: |
           ls ${{ github.workspace }}/src/Digitalroot.Valheim.Common.Log           
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Build  
       - run: dotnet build --configuration Release src/Digitalroot.Valheim.Common.Log/Digitalroot.Valheim.Common.Log.csproj
+      - name: Test  
+      - run: dotnet test --configuration Release src/UnitTests/UnitTests.csproj
       - name: Create the package
         run: dotnet pack --configuration Release src/Digitalroot.Valheim.Common.Log/Digitalroot.Valheim.Common.Log.csproj
       - name: Publish the package to GPR
         run: dotnet nuget push src/Digitalroot.Valheim.Common.Log/bin/Release/*.nupkg --skip-duplicate
+      - run: echo "🍏 This job's status is ${{ job.status }}."
