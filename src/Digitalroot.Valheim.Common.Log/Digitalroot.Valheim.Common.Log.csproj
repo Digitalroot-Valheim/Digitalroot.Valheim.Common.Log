@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<AssemblyName>Digitalroot.Valheim.Common.Log</AssemblyName>
+    <AssemblyName>Digitalroot.Valheim.Common.Log</AssemblyName>
     <TargetFrameworks>netstandard2.1;net462;net472;net48</TargetFrameworks>
     <PackageId>Digitalroot.Valheim.Common.Log</PackageId>
     <RootNamespace>Digitalroot.Valheim.Common</RootNamespace>
@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Digitalroot.Valheim.Common.Json" Version="1.0.1" />
+    <PackageReference Include="Digitalroot.Valheim.Common.Json" Version="1.0.2" />
     <PackageReference Include="Pfhoenix.Valheim.ModProjectReferences" Version="1.0.6" />
   </ItemGroup>
 
