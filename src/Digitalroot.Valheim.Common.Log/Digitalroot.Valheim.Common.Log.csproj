@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Digitalroot.Valheim.Common.Json" Version="1.0.1" />
+    <PackageReference Include="Digitalroot.Valheim.Common.Json" Version="1.0.2" />
     <PackageReference Include="Pfhoenix.Valheim.ModProjectReferences" Version="1.0.6" />
   </ItemGroup>
 
