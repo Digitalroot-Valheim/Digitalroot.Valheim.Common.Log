@@ -34,9 +34,9 @@ jobs:
         run: |
           ls ${{ github.workspace }}/src/Digitalroot.Valheim.Common.Log           
       - name: Build  
-      - run: dotnet build --configuration Release src/Digitalroot.Valheim.Common.Log/Digitalroot.Valheim.Common.Log.csproj
+        run: dotnet build --configuration Release src/Digitalroot.Valheim.Common.Log/Digitalroot.Valheim.Common.Log.csproj
       - name: Test  
-      - run: dotnet test --configuration Release src/UnitTests/UnitTests.csproj
+        run: dotnet test --configuration Release src/UnitTests/UnitTests.csproj
       - name: Create the package
         run: dotnet pack --configuration Release src/Digitalroot.Valheim.Common.Log/Digitalroot.Valheim.Common.Log.csproj
       - name: Publish the package to GPR
