@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <AssemblyName>Digitalroot.Valheim.Common.Log</AssemblyName>
     <TargetFrameworks>netstandard2.1;net462;net472;net48</TargetFrameworks>
     <PackageId>Digitalroot.Valheim.Common.Log</PackageId>
     <RootNamespace>Digitalroot.Valheim.Common</RootNamespace>
@@ -20,10 +21,10 @@
     <Description>Logging for Valheim</Description>
     <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageVersion>1.0.1</PackageVersion>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1</FileVersion>
-    <Version>1.0.1</Version>
+    <PackageVersion>1.0.2</PackageVersion>
+    <AssemblyVersion>1.0.2</AssemblyVersion>
+    <FileVersion>1.0.2</FileVersion>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
