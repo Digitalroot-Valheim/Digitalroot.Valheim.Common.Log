@@ -106,7 +106,7 @@ namespace Digitalroot.Valheim.Common
           _timer = null;
         }
 
-        if (_fileStream == null) _fileStream = new FileStream(_traceFileInfo.FullName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read, 4096, FileOptions.WriteThrough);
+        if (_fileStream == null) _fileStream = new FileStream(_traceFileInfo.FullName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite, 4096, FileOptions.WriteThrough);
         if (_streamWriter == null) _streamWriter = new StreamWriter(_fileStream, Encoding.UTF8, 4096);
 
         if (_timer == null)
