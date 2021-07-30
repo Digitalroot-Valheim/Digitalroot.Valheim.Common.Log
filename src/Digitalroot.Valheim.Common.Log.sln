@@ -7,7 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
 		..\LICENSE = ..\LICENSE
-		..\.github\workflows\publish.yml = ..\.github\workflows\publish.yml
 		..\README.md = ..\README.md
 		ico\ValheimRcon_black.ico = ico\ValheimRcon_black.ico
 		ico\ValheimRcon_black.png = ico\ValheimRcon_black.png
@@ -15,7 +14,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Digitalroot.Valheim.Common.Log", "Digitalroot.Valheim.Common.Log\Digitalroot.Valheim.Common.Log.csproj", "{317EF3E2-2803-4139-8997-7CC7727EB270}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{EE8C6082-0ACC-4DC0-B336-BEF6D6C40D69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{EE8C6082-0ACC-4DC0-B336-BEF6D6C40D69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{AA57894F-75DA-4F08-9045-03605815FB7F}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\release-drafter.yml = ..\.github\release-drafter.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{66F61AAD-E15A-473F-8B2E-12FE0796D886}"
+	ProjectSection(SolutionItems) = preProject
+		..\.github\workflows\builder.yml = ..\.github\workflows\builder.yml
+		..\.github\workflows\drafter.yml = ..\.github\workflows\drafter.yml
+		..\.github\workflows\publish.yml = ..\.github\workflows\publish.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +45,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AA57894F-75DA-4F08-9045-03605815FB7F} = {3650870F-CC1F-40E9-AB53-30A82AAF1174}
+		{66F61AAD-E15A-473F-8B2E-12FE0796D886} = {AA57894F-75DA-4F08-9045-03605815FB7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {425B46AB-DE03-42E3-8ADE-A1CFCDAAD239}

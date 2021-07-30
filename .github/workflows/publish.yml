@@ -1,44 +1,41 @@
-name: dotnet package
+name: NuGet Package
 on:
   push:
     branches:
       - main # Default release branch
+    paths:
+      - 'src/**'   
+      - '.github/workflows/**'   
 jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
+    env:
+      SLN_FILE_NAME: Digitalroot.Valheim.Common.Log.sln
+      PROJ: Digitalroot.Valheim.Common.Log  
+      NUGET_AUTH_TOKEN: ${{secrets.NUGET_PAT}}
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-dotnet@v1.8.1
         with:
           #dotnet-version: '3.1.x' # SDK Version to use.
           source-url: https://nuget.pkg.github.com/Digitalroot-Valheim/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{secrets.NUGET_PAT}}
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - name: List files in the src repository
-        run: |
-          ls ${{ github.workspace }}/src
-      - name: List files in the src/Digitalroot.Valheim.Common.Log repository
-        run: |
-          ls ${{ github.workspace }}/src/Digitalroot.Valheim.Common.Log           
-      - name: Build  
-        run: dotnet build --configuration Release src/Digitalroot.Valheim.Common.Log/Digitalroot.Valheim.Common.Log.csproj
+      - name: Restore packages
+        run: dotnet restore src/${{ env.SLN_FILE_NAME }
+      - name: Build    
+        run: dotnet build src/${{ env.SLN_FILE_NAME } -c --no-restore
       - name: Test  
-        run: dotnet test --configuration Release src/UnitTests/UnitTests.csproj
+        run: dotnet test src/${{ env.SLN_FILE_NAME }} -c Release --no-build
       - name: Create the package
-        run: dotnet pack --configuration Release src/Digitalroot.Valheim.Common.Log/Digitalroot.Valheim.Common.Log.csproj
-      - name: Publish the package to GPR
-        run: dotnet nuget push src/Digitalroot.Valheim.Common.Log/bin/Release/*.nupkg --skip-duplicate
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+        run: dotnet pack src/${{ env.PROJ }}/${{ env.PROJ }}.csproj -c Release --no-restore --no-build
+      - name: Publish package to Digitalroot-Valheim nuget repository
+        run: dotnet nuget push src/${{ env.PROJ }}/bin/Release/*.nupkg --skip-duplicate
