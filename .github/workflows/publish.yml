@@ -30,9 +30,9 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - name: Restore packages
-        run: dotnet restore src/${{ env.SLN_FILE_NAME }
+        run: dotnet restore src/${{ env.SLN_FILE_NAME }}
       - name: Build    
-        run: dotnet build src/${{ env.SLN_FILE_NAME } -c --no-restore
+        run: dotnet build src/${{ env.SLN_FILE_NAME }} -c --no-restore
       - name: Test  
         run: dotnet test src/${{ env.SLN_FILE_NAME }} -c Release --no-build
       - name: Create the package
