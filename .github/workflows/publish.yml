@@ -36,6 +36,6 @@ jobs:
       - name: Test  
         run: dotnet test src/${{ env.SLN_FILE_NAME }} -c Release --no-build
       - name: Create the package
-        run: dotnet pack src/${{ env.PROJ }}/${{ env.PROJ }}.csproj -c Release --no-restore --no-build
+        run: dotnet pack src/${{ env.PROJ }}/${{ env.PROJ }}.csproj -c Release --no-restore --no-build --nologo
       - name: Publish package to Digitalroot-Valheim nuget repository
         run: dotnet nuget push src/${{ env.PROJ }}/bin/Release/*.nupkg --skip-duplicate

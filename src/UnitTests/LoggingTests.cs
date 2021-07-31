@@ -217,7 +217,7 @@ namespace UnitTests
 
       var loggers = new List<ITraceableLogging> {loggerA, loggerB, loggerC};
       Random rnd = new Random();
-      for (int i = 0; i < 1000; i++)
+      for (int i = 0; i < 10; i++)
       {
         Log.Info(loggers[rnd.Next(0, 3)], nameof(Log.Info));
         Log.Info(loggers[rnd.Next(0, 3)], nameof(Log.Info));

@@ -33,5 +33,9 @@ jobs:
       - name: Build
         run: dotnet build src/${{ env.SLN_FILE_NAME }} -c Release --no-restore
       - name: Test
-        run: dotnet test src/${{ env.SLN_FILE_NAME }} -c Release --no-build
-        
+        run: dotnet test src/${{ env.SLN_FILE_NAME }} -c Release --no-build -l nunit --nologo
+      - uses: MirrorNG/nunit-reporter@v1.0.9
+        if: always()
+        with:
+          path: src/UnitTests/TestResults/*.xml
+          access-token: ${{ secrets.NUGET_PAT }}
