@@ -48,7 +48,7 @@ namespace UnitTests
     [Test(Author = "Digitalroot", Description = "Tests logging with a custom source.", TestOf = typeof(Log)), Timeout(500)]
     public void ChangeSourceTest()
     {
-      var logger = new StaticSourceLogger();
+      var logger = new StaticSourceLogger("LogTest");
       Log.RegisterSource(logger, true);
       Log.Info(logger, nameof(Log.Info));
       Log.Debug(logger, nameof(Log.Debug));
