@@ -25,10 +25,10 @@ jobs:
       - name: Build
         run: dotnet build src/${{ env.SLN_FILE_NAME }} -c Release --no-restore --nologo
       - name: Test
-        run: dotnet test src/${{ env.SLN_FILE_NAME }} -c Release --no-build -l nunit --nologo
+        run: dotnet test src/${{ env.SLN_FILE_NAME }} -c Release --no-build -l "trx;LogFileName=test-results.trx" --nologo
       - uses: actions/upload-artifact@v2
         if: always()
         with:
-          path: ./src/UnitTests/TestResults/TestResults.xml
+          path: ./src/UnitTests/TestResults/test-results.trx
           name: test-results
           retention-days: 1
