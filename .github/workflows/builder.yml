@@ -21,11 +21,11 @@ jobs:
         with:
           source-url: https://nuget.pkg.github.com/Digitalroot-Valheim/index.json
       - name: Restore packages
-        run: dotnet restore src/${{ env.SLN_FILE_NAME }}
+        run: dotnet restore src/${{ env.SLN_FILE_NAME }} --nologo
       - name: Build
-        run: dotnet build src/${{ env.SLN_FILE_NAME }} -c Release --no-restore
+        run: dotnet build src/${{ env.SLN_FILE_NAME }} -c Release --no-restore --nologo
       - name: Test
-        run: dotnet test src/${{ env.SLN_FILE_NAME }} -c Release --no-build -l nunit -l "trx;LogFileName=test-results.trx" --nologo
+        run: dotnet test src/${{ env.SLN_FILE_NAME }} -c Release --no-build -l nunit --nologo
       - uses: actions/upload-artifact@v2
         if: always()
         with:
