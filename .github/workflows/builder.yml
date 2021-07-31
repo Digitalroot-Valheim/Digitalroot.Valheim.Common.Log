@@ -7,10 +7,7 @@ on:
   pull_request:
 jobs:
   build:
-    runs-on: windows-latest
-    permissions:
-      packages: write
-      contents: read
+    runs-on: ubuntu-latest
     env:
       SLN_FILE_NAME: Digitalroot.Valheim.Common.Log.sln
       NUGET_AUTH_TOKEN: ${{secrets.NUGET_PAT}}
@@ -30,7 +27,7 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.0.2
       - name: Restore packages
-        run: nuget restore src/${{ env.SLN_FILE_NAME }}
+        run: dotnet restore src/${{ env.SLN_FILE_NAME }}
       - name: Build
         run: dotnet build src/${{ env.SLN_FILE_NAME }} -c Release --no-restore
       - name: Test
@@ -40,3 +37,4 @@ jobs:
         with:
           path: ./src/UnitTests/TestResults/TestResults.xml
           name: test-results
+          retention-days: 1
