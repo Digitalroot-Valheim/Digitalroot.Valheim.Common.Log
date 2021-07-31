@@ -1,12 +1,7 @@
-﻿using BepInEx;
-using BepInEx.Logging;
+﻿using BepInEx.Logging;
 using JetBrains.Annotations;
-using Digitalroot.Valheim.Common.Json;
 using System;
-using System.IO;
-using System.Reflection;
-using System.Text;
-using System.Timers;
+using System.Collections.Generic;
 
 namespace Digitalroot.Valheim.Common
 {
@@ -15,9 +10,7 @@ namespace Digitalroot.Valheim.Common
   /// </summary>
   public sealed class Log : IDisposable
   {
-    private ManualLogSource _loggerRef;
-    private string _source = nameof(Digitalroot);
-    private const int FlushTick = 300;
+    private static readonly Dictionary<string, TraceLogger> TraceLoggers = new Dictionary<string, TraceLogger>();
 
     private static Log Instance { get; } = new Log();
 
@@ -27,245 +20,134 @@ namespace Digitalroot.Valheim.Common
 
     private Log()
     {
-      Init();
+      // Create Default TraceLogger
+      TraceLoggers.Add(nameof(Digitalroot), new TraceLogger(nameof(Digitalroot), true));
     }
 
+    #region Implementation of IDisposable
+
+    /// <inheritdoc />
     public void Dispose()
     {
-      _timer.Stop();
-      _timer.Dispose();
-      _streamWriter.Flush();
-      _fileStream.Flush();
-      _streamWriter.Close();
-      _fileStream.Close();
-      _streamWriter.Dispose();
-      _fileStream.Dispose();
-    }
-
-    private void Init()
-    {
-      if (_timer != null)
+      foreach (var traceLogger in TraceLoggers.Values)
       {
-        StopTrace();
-        _timer.Dispose();
-        _streamWriter.Flush();
-        _fileStream.Flush();
-        _streamWriter.Close();
-        _fileStream.Close();
-        _streamWriter.Dispose();
-        _fileStream.Dispose();
-      }
-
-      _loggerRef = Logger.CreateLogSource(_source);
-      _traceFileInfo = new FileInfo(Path.Combine(Paths.BepInExRootPath ?? AssemblyDirectory.FullName, $"{_source}.Trace.log"));
-
-      if (_traceFileInfo.Exists)
-      {
-        _traceFileInfo.Delete();
-        _traceFileInfo.Refresh();
-      }
-
-      if (IsTraceEnabled)
-      {
-        _timer = new System.Timers.Timer(FlushTick)
-        {
-          AutoReset = true,
-          Enabled = true
-        };
-        _timer.Elapsed += TimerElapsed;
-
-        StartTrace();
-      }
-    }
-
-    public static void SetSource(string source)
-    {
-      Instance._source = source;
-      Instance.Init();
-    }
-    
-    #region Trace
-
-    // ReSharper disable once MemberCanBePrivate.Global
-    public static bool IsTraceEnabled { get; private set; }
-
-    private static readonly object FileLock = new object();
-    private FileInfo _traceFileInfo;
-    private FileStream _fileStream;
-    private StreamWriter _streamWriter;
-    private System.Timers.Timer _timer;
-
-    private void StartTrace()
-    {
-      lock (FileLock)
-      {
-        if (_fileStream != null && !_fileStream.CanWrite)
-        {
-          _fileStream = null;
-          _streamWriter = null;
-          _timer = null;
-        }
-
-        if (_fileStream == null) _fileStream = new FileStream(_traceFileInfo.FullName, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite, 4096, FileOptions.WriteThrough);
-        if (_streamWriter == null) _streamWriter = new StreamWriter(_fileStream, Encoding.UTF8, 4096);
-
-        if (_timer == null)
-        {
-          _timer = new System.Timers.Timer(FlushTick);
-        }
-
-        _timer.Start();
-        _loggerRef.LogEvent += OnLogEvent;
-      }
-    }
-
-    private void StopTrace()
-    {
-      _timer.Stop();
-      _loggerRef.LogEvent -= OnLogEvent;
-    }
-
-    private void OnLogEvent(object sender, LogEventArgs e)
-    {
-      if (e.Source.SourceName == _source || e.Level == (LogLevel.Error | LogLevel.Fatal))
-      {
-        lock (FileLock)
-        {
-          if (e.Data is string)
-          {
-            _streamWriter.WriteLine($"[{e.Level,-7}:{e.Source.SourceName,10}] {e.Data}");
-          }
-          else
-          {
-            _streamWriter.WriteLine($"[{e.Level,-7}:{e.Source.SourceName,10}] {JsonSerializationProvider.ToJson(e.Data)}");
-          }
-        }
-      }
-    }
-
-    private void TimerElapsed(object sender, ElapsedEventArgs e)
-    {
-      lock (FileLock)
-      {
-        _streamWriter?.Flush();
-      }
-    }
-
-    [UsedImplicitly]
-    public static void EnableTrace()
-    {
-      Instance.StartTrace();
-      IsTraceEnabled = true;
-    }
-
-    [UsedImplicitly]
-    public static void DisableTrace()
-    {
-      Instance.StopTrace();
-      IsTraceEnabled = false;
-    }
-
-    public static void ToggleTrace(bool value)
-    {
-      switch (value)
-      {
-        case true:
-          EnableTrace();
-          break;
-        default:
-          DisableTrace();
-          break;
+        traceLogger.Dispose();
       }
     }
 
     #endregion
 
+    public static void FlushLog(ITraceableLogging sender)
+    {
+      if (TraceLoggers.ContainsKey(sender.Source))
+      {
+        TraceLoggers[sender.Source].Flush();
+      }
+    }
+
+    public static void FlushAllLogs()
+    {
+      foreach (var traceLogger in TraceLoggers.Values)
+      {
+        traceLogger.Flush();
+      }
+    }
+
+    public static void RegisterSource(ITraceableLogging sender, bool enabledTrace)
+    {
+      if (TraceLoggers.ContainsKey(sender.Source)) return;
+      TraceLoggers.Add(sender.Source, new TraceLogger(sender.Source, enabledTrace));
+    }
+    
     #region Logging
 
     [UsedImplicitly]
-    public static void Fatal(Exception e, int i = 1)
+    public static void Fatal(ITraceableLogging sender, Exception e, int i = 1)
     {
-      Fatal($"Message: {e.Message}");
-      Fatal($"StackTrace: {e.StackTrace}");
-      Fatal($"Source: {e.Source}");
+      Fatal(sender, $"Message: {e.Message}");
+      Fatal(sender, $"StackTrace: {e.StackTrace}");
+      Fatal(sender, $"Source: {e.Source}");
       if (e.Data.Count > 0)
       {
         foreach (var key in e.Data.Keys)
         {
-          Fatal($"key: {key}, value: {e.Data[key]}");
+          Fatal(sender, $"key: {key}, value: {e.Data[key]}");
         }
       }
 
       if (e.InnerException != null)
       {
-        Fatal($"--- InnerException [{i}][Start] ---");
-        Fatal(e.InnerException, ++i);
+        Fatal(sender, $"--- InnerException [{i}][Start] ---");
+        Fatal(sender, e.InnerException, ++i);
       }
     }
 
-    [UsedImplicitly]
-    public static void Fatal(object value)
+    private static TraceLogger GetTraceLogger(ITraceableLogging sender)
     {
-      Instance._loggerRef.LogFatal(value);
+      return TraceLoggers.ContainsKey(sender.Source) ? TraceLoggers[sender.Source] : TraceLoggers[nameof(Digitalroot)];
     }
 
     [UsedImplicitly]
-    public static void Error(Exception e, int i = 1)
+    public static void Fatal(ITraceableLogging sender, object value)
     {
-      Error($"Message: {e.Message}");
-      Error($"StackTrace: {e.StackTrace}");
-      Error($"Source: {e.Source}");
+      GetTraceLogger(sender).LoggerRef.LogFatal(value);
+    }
+
+    [UsedImplicitly]
+    public static void Error(ITraceableLogging sender, Exception e, int i = 1)
+    {
+      Error(sender, $"Message: {e.Message}");
+      Error(sender, $"StackTrace: {e.StackTrace}");
+      Error(sender, $"Source: {e.Source}");
       if (e.Data.Count > 0)
       {
         foreach (var key in e.Data.Keys)
         {
-          Error($"key: {key}, value: {e.Data[key]}");
+          Error(sender, $"key: {key}, value: {e.Data[key]}");
         }
       }
 
-      if (e.InnerException != null)
+      if (e.InnerException == null) return;
+      Error(sender, $"--- InnerException [{i}][Start] ---");
+      Error(sender, e.InnerException, ++i);
+    }
+
+    [UsedImplicitly]
+    public static void Error(ITraceableLogging sender, object value)
+    {
+      GetTraceLogger(sender).LoggerRef.LogError(value);
+    }
+
+    [UsedImplicitly]
+    public static void Warning(ITraceableLogging sender, object value)
+    {
+      GetTraceLogger(sender).LoggerRef.LogWarning(value);
+    }
+
+    [UsedImplicitly]
+    public static void Message(ITraceableLogging sender, object value)
+    {
+      GetTraceLogger(sender).LoggerRef.LogMessage(value);
+    }
+
+    [UsedImplicitly]
+    public static void Info(ITraceableLogging sender, object value)
+    {
+      GetTraceLogger(sender).LoggerRef.LogInfo(value);
+    }
+
+    [UsedImplicitly]
+    public static void Debug(ITraceableLogging sender, object value)
+    {
+      GetTraceLogger(sender).LoggerRef.LogDebug(value);
+    }
+
+    [UsedImplicitly]
+    public static void Trace(ITraceableLogging sender, object value)
+    {
+      if (GetTraceLogger(sender).IsTraceEnabled)
       {
-        Error($"--- InnerException [{i}][Start] ---");
-        Error(e.InnerException, ++i);
-      }
-    }
-
-    [UsedImplicitly]
-    public static void Error(object value)
-    {
-      Instance._loggerRef.LogError(value);
-    }
-
-    [UsedImplicitly]
-    public static void Warning(object value)
-    {
-      Instance._loggerRef.LogWarning(value);
-    }
-
-    [UsedImplicitly]
-    public static void Message(object value)
-    {
-      Instance._loggerRef.LogMessage(value);
-    }
-
-    [UsedImplicitly]
-    public static void Info(object value)
-    {
-      Instance._loggerRef.LogInfo(value);
-    }
-
-    [UsedImplicitly]
-    public static void Debug(object value)
-    {
-      Instance._loggerRef.LogDebug(value);
-    }
-
-    [UsedImplicitly]
-    public static void Trace(object value)
-    {
-      if (IsTraceEnabled)
-      {
-        Instance._loggerRef.Log(LogLevel.All, value);
+        GetTraceLogger(sender).LoggerRef.Log(LogLevel.All, value);
       }
     }
 
@@ -274,17 +156,6 @@ namespace Digitalroot.Valheim.Common
     public static void OnDestroy()
     {
       Instance.Dispose();
-    }
-
-    private static DirectoryInfo AssemblyDirectory
-    {
-      get
-      {
-        string codeBase = Assembly.GetExecutingAssembly().CodeBase;
-        UriBuilder uri = new UriBuilder(codeBase);
-        var fileInfo = new FileInfo(Uri.UnescapeDataString(uri.Path));
-        return fileInfo.Directory;
-      }
     }
   }
 }
