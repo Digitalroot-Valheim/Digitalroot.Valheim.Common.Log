@@ -22,9 +22,9 @@
     <Description>Logging for Valheim</Description>
     <PackageReleaseNotes>Fixed IOException</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageVersion>1.1.0</PackageVersion>
-    <AssemblyVersion>1.1.0</AssemblyVersion>
-    <FileVersion>1.1.0</FileVersion>
+    <PackageVersion>1.1.1</PackageVersion>
+    <AssemblyVersion>1.1.1</AssemblyVersion>
+    <FileVersion>1.1.1</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

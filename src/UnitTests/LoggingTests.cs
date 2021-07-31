@@ -9,30 +9,10 @@ namespace UnitTests
 {
   public class LoggingTests
   {
-    private class TestLoggerClass : ITraceableLogging
-    {
-      public TestLoggerClass()
-      : this(nameof(LogTest))
-      {
-      }
-
-      public TestLoggerClass(string source)
-      {
-        Source = source;
-      }
-
-      #region Implementation of ITraceableLogging
-
-      /// <inheritdoc />
-      public string Source { get; private set; }
-
-      #endregion
-    }
-
     [Test(Author = "Digitalroot", Description = "Tests logging with the default source.", TestOf = typeof(Log)), Timeout(500)]
     public void LogTest()
     {
-      var logger = new TestLoggerClass();
+      var logger = new StaticSourceLogger();
 
       Log.Info(logger, nameof(Log.Info));
       Log.Debug(logger, nameof(Log.Debug));
@@ -68,7 +48,7 @@ namespace UnitTests
     [Test(Author = "Digitalroot", Description = "Tests logging with a custom source.", TestOf = typeof(Log)), Timeout(500)]
     public void ChangeSourceTest()
     {
-      var logger = new TestLoggerClass();
+      var logger = new StaticSourceLogger();
       Log.RegisterSource(logger, true);
       Log.Info(logger, nameof(Log.Info));
       Log.Debug(logger, nameof(Log.Debug));
@@ -105,7 +85,7 @@ namespace UnitTests
     [Test(Author = "Digitalroot", Description = "Tests logging with a custom source.", TestOf = typeof(Log)), Timeout(500)]
     public void MultiSourceTest()
     {
-      var loggerA = new TestLoggerClass("loggerA");
+      var loggerA = new StaticSourceLogger("loggerA");
       Log.RegisterSource(loggerA, true);
       Log.Info(loggerA, nameof(Log.Info));
       Log.Debug(loggerA, nameof(Log.Debug));
@@ -116,7 +96,7 @@ namespace UnitTests
       Log.Trace(loggerA, nameof(Log.Trace));
       Log.FlushLog(loggerA);
 
-      var loggerB = new TestLoggerClass("loggerB");
+      var loggerB = new StaticSourceLogger("loggerB");
       Log.RegisterSource(loggerB, true);
       Log.Info(loggerB, nameof(Log.Info));
       Log.Debug(loggerB, nameof(Log.Debug));
@@ -127,7 +107,7 @@ namespace UnitTests
       Log.Trace(loggerB, nameof(Log.Trace));
       Log.FlushLog(loggerB);
 
-      var loggerC = new TestLoggerClass("loggerC");
+      var loggerC = new StaticSourceLogger("loggerC");
       Log.RegisterSource(loggerC, true);
       Log.Info(loggerC, nameof(Log.Info));
       Log.Debug(loggerC, nameof(Log.Debug));
@@ -208,11 +188,11 @@ namespace UnitTests
     [Test(Author = "Digitalroot", Description = "Tests logging with a custom source.", TestOf = typeof(Log)), Timeout(500)]
     public void MultiSourceWeaveTest()
     {
-      var loggerA = new TestLoggerClass("loggerA");
+      var loggerA = new StaticSourceLogger("loggerA");
       Log.RegisterSource(loggerA, true);
-      var loggerB = new TestLoggerClass("loggerB");
+      var loggerB = new StaticSourceLogger("loggerB");
       Log.RegisterSource(loggerB, true);
-      var loggerC = new TestLoggerClass("loggerC");
+      var loggerC = new StaticSourceLogger("loggerC");
       Log.RegisterSource(loggerC, true);
 
       var loggers = new List<ITraceableLogging> {loggerA, loggerB, loggerC};
