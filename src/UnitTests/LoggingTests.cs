@@ -61,8 +61,8 @@ namespace UnitTests
 
       FileInfo logFileInfo = new FileInfo("LogTest.Trace.log");
       System.Console.WriteLine(logFileInfo.FullName);
-      Assert.That(logFileInfo, Is.Not.Null);
-      Assert.That(logFileInfo.Exists, Is.True);
+      Assert.That(logFileInfo, Is.Not.Null, $"logFileInfo != null : {logFileInfo != null}");
+      Assert.That(logFileInfo.Exists, Is.True, $"logFileInfo.Exists : {logFileInfo.Exists}, {logFileInfo.FullName}");
 
       using var fileStream = new FileStream(logFileInfo.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 1024, FileOptions.None);
       using var sr = new StreamReader(fileStream, Encoding.UTF8);
