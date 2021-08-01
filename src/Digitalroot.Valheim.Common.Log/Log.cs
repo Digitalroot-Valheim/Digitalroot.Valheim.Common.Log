@@ -8,11 +8,11 @@ namespace Digitalroot.Valheim.Common
   /// <summary>
   /// License: "GNU Affero General Public License v3.0"
   /// </summary>
-  public sealed class Log : IDisposable
+  public sealed class Log 
   {
-    private static readonly Dictionary<string, TraceLogger> TraceLoggers = new Dictionary<string, TraceLogger>();
+    private static readonly Dictionary<string, TraceLogger> TraceLoggers = new();
 
-    private static Log Instance { get; } = new Log();
+    [UsedImplicitly] private static Log Instance { get; } = new();
 
     static Log()
     {
@@ -22,35 +22,6 @@ namespace Digitalroot.Valheim.Common
     {
       // Create Default TraceLogger
       TraceLoggers.Add(nameof(Digitalroot), new TraceLogger(nameof(Digitalroot), true));
-    }
-
-    #region Implementation of IDisposable
-
-    /// <inheritdoc />
-    public void Dispose()
-    {
-      foreach (var traceLogger in TraceLoggers.Values)
-      {
-        traceLogger.Dispose();
-      }
-    }
-
-    #endregion
-
-    public static void FlushLog(ITraceableLogging sender)
-    {
-      if (TraceLoggers.ContainsKey(sender.Source))
-      {
-        TraceLoggers[sender.Source].Flush();
-      }
-    }
-
-    public static void FlushAllLogs()
-    {
-      foreach (var traceLogger in TraceLoggers.Values)
-      {
-        traceLogger.Flush();
-      }
     }
 
     public static void RegisterSource(ITraceableLogging sender, bool enabledTrace)
@@ -152,10 +123,5 @@ namespace Digitalroot.Valheim.Common
     }
 
     #endregion
-
-    public static void OnDestroy()
-    {
-      Instance.Dispose();
-    }
   }
 }

@@ -21,7 +21,6 @@ namespace UnitTests
       Log.Fatal(logger, nameof(Log.Fatal));
       Log.Warning(logger, nameof(Log.Warning));
       Log.Trace(logger, nameof(Log.Trace));
-      Log.FlushLog(logger);
 
       FileInfo logFileInfo = new FileInfo("Digitalroot.Trace.log");
       System.Console.WriteLine(logFileInfo.FullName);
@@ -57,7 +56,6 @@ namespace UnitTests
       Log.Fatal(logger, nameof(Log.Fatal));
       Log.Warning(logger, nameof(Log.Warning));
       Log.Trace(logger, nameof(Log.Trace));
-      Log.FlushLog(logger);
 
       FileInfo logFileInfo = new FileInfo("LogTest.Trace.log");
       System.Console.WriteLine(logFileInfo.FullName);
@@ -94,7 +92,6 @@ namespace UnitTests
       Log.Fatal(loggerA, nameof(Log.Fatal));
       Log.Warning(loggerA, nameof(Log.Warning));
       Log.Trace(loggerA, nameof(Log.Trace));
-      Log.FlushLog(loggerA);
 
       var loggerB = new StaticSourceLogger("loggerB");
       Log.RegisterSource(loggerB, true);
@@ -105,7 +102,6 @@ namespace UnitTests
       Log.Fatal(loggerB, nameof(Log.Fatal));
       Log.Warning(loggerB, nameof(Log.Warning));
       Log.Trace(loggerB, nameof(Log.Trace));
-      Log.FlushLog(loggerB);
 
       var loggerC = new StaticSourceLogger("loggerC");
       Log.RegisterSource(loggerC, true);
@@ -116,7 +112,6 @@ namespace UnitTests
       Log.Fatal(loggerC, nameof(Log.Fatal));
       Log.Warning(loggerC, nameof(Log.Warning));
       Log.Trace(loggerC, nameof(Log.Trace));
-      Log.FlushLog(loggerC);
 
       FileInfo logFileInfoA = new FileInfo("loggerA.Trace.log");
       System.Console.WriteLine(logFileInfoA.FullName);
@@ -235,10 +230,6 @@ namespace UnitTests
         Log.Warning(loggers[rnd.Next(0, 3)], nameof(Log.Warning));
         Log.Trace(loggers[rnd.Next(0, 3)], nameof(Log.Trace));
       }
-
-      Log.FlushLog(loggerA);
-      Log.FlushLog(loggerB);
-      Log.FlushLog(loggerC);
 
       FileInfo logFileInfoA = new FileInfo("loggerA.Trace.log");
       System.Console.WriteLine(logFileInfoA.FullName);
