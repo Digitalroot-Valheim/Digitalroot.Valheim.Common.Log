@@ -13,9 +13,7 @@ namespace Digitalroot.Valheim.Common
   {
     internal readonly ManualLogSource LoggerRef;
     private readonly string _source;
-    private readonly object _fileLock = new();
     private readonly FileInfo _traceFileInfo;
-    private readonly EventWaitHandle _waitHandle;
     public bool IsTraceEnabled { get; }
 
     public TraceLogger(string source, bool enableTrace)
@@ -23,7 +21,6 @@ namespace Digitalroot.Valheim.Common
       _source = source;
       IsTraceEnabled = enableTrace;
       LoggerRef = Logger.CreateLogSource(_source);
-      _waitHandle = new EventWaitHandle(true, EventResetMode.AutoReset, $"Digitalroot.Valheim.Common.TraceLogger.{_source}");
       _traceFileInfo = new FileInfo(Path.Combine(Paths.BepInExRootPath ?? AssemblyDirectory.FullName, $"{_source}.Trace.log"));
 
       if (_traceFileInfo.Exists)
@@ -47,7 +44,8 @@ namespace Digitalroot.Valheim.Common
     {
       if (e.Source.SourceName != _source && e.Level != (LogLevel.Error | LogLevel.Fatal)) return;
 
-      _waitHandle.WaitOne();
+      using var mutex = new Mutex(false, $"Digitalroot.Valheim.Common.TraceLogger.{_source}");
+      mutex.WaitOne();
       try
       {
         if (e.Data is string)
@@ -61,7 +59,7 @@ namespace Digitalroot.Valheim.Common
       }
       finally
       {
-        _waitHandle.Set();
+        mutex.ReleaseMutex();
       }
     }
 
