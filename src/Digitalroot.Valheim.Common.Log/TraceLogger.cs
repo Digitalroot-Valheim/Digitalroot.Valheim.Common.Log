@@ -29,10 +29,7 @@ namespace Digitalroot.Valheim.Common
         _traceFileInfo.Refresh();
       }
 
-      if (enableTrace)
-      {
-        LoggerRef.LogEvent += OnLogEvent;
-      }
+      LoggerRef.LogEvent += OnLogEvent;
     }
 
     private void StopTrace()

@@ -1,15 +1,19 @@
-﻿namespace Digitalroot.Valheim.Common
+﻿using System.Diagnostics;
+
+namespace Digitalroot.Valheim.Common
 {
+  [DebuggerDisplay("Source = {Source}, EnableTrace = {EnableTrace}", Name = "{Source}")]
   public class StaticSourceLogger : ITraceableLogging
   {
-    public StaticSourceLogger()
-      : this("Digitalroot")
+    public StaticSourceLogger(bool enableTrace = false)
+      : this("Digitalroot", enableTrace)
     {
     }
 
-    public StaticSourceLogger(string source)
+    public StaticSourceLogger(string source, bool enableTrace = false)
     {
       Source = source;
+      EnableTrace = enableTrace;
     }
 
     #region Implementation of ITraceableLogging
@@ -17,6 +21,9 @@
     /// <inheritdoc />
     public string Source { get; }
 
-    #endregion
+    /// <inheritdoc />
+    public bool EnableTrace { get; }
+
+#endregion
   }
 }
