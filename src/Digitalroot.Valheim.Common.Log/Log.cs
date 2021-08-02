@@ -21,13 +21,17 @@ namespace Digitalroot.Valheim.Common
     private Log()
     {
       // Create Default TraceLogger
-      TraceLoggers.Add(nameof(Digitalroot), new TraceLogger(nameof(Digitalroot), true));
+#if DEBUG
+      TraceLoggers.Add(nameof(Digitalroot), new TraceLogger(nameof(Digitalroot), false));
+#else
+      TraceLoggers.Add(nameof(Digitalroot), new TraceLogger(nameof(Digitalroot), false));
+#endif
     }
 
-    public static void RegisterSource(ITraceableLogging sender, bool enabledTrace)
+    public static void RegisterSource(ITraceableLogging sender)
     {
       if (TraceLoggers.ContainsKey(sender.Source)) return;
-      TraceLoggers.Add(sender.Source, new TraceLogger(sender.Source, enabledTrace));
+      TraceLoggers.Add(sender.Source, new TraceLogger(sender.Source, sender.EnableTrace));
     }
     
     #region Logging
@@ -116,7 +120,7 @@ namespace Digitalroot.Valheim.Common
     [UsedImplicitly]
     public static void Trace(ITraceableLogging sender, object value)
     {
-      if (GetTraceLogger(sender).IsTraceEnabled)
+      if (GetTraceLogger(sender).IsTraceEnabled || sender.EnableTrace)
       {
         GetTraceLogger(sender).LoggerRef.Log(LogLevel.All, value);
       }
