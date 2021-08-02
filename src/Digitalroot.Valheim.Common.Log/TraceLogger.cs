@@ -39,7 +39,7 @@ namespace Digitalroot.Valheim.Common
 
     private void OnLogEvent(object sender, LogEventArgs e)
     {
-      if (e.Source.SourceName != _source && e.Level != (LogLevel.Error | LogLevel.Fatal)) return;
+      if (e.Source.SourceName != _source || !IsTraceEnabled) return;
 
       using var mutex = new Mutex(false, $"Digitalroot.Valheim.Common.TraceLogger.{_source}");
       mutex.WaitOne();
