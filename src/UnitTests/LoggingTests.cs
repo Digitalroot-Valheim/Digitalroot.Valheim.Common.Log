@@ -483,38 +483,7 @@ namespace UnitTests
       FileInfo logFileInfoA = new FileInfo("MultiSourceWeaveSameLoggerNoTrace.Trace.log");
       System.Console.WriteLine(logFileInfoA.FullName);
       Assert.That(logFileInfoA, Is.Not.Null);
-      Assert.That(logFileInfoA.Exists, Is.True);
-
-      using var fileStreamA = new FileStream(logFileInfoA.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 1024, FileOptions.None);
-      using var streamReaderA = new StreamReader(fileStreamA, Encoding.UTF8);
-
-      while (!streamReaderA.EndOfStream)
-      {
-        string line = streamReaderA.ReadLine();
-        Assert.That(line,
-          Is.EqualTo("[Info   :MultiSourceWeaveSameLoggerNoTrace] Info")
-            .Or.EqualTo("[Debug  :MultiSourceWeaveSameLoggerNoTrace] Debug")
-            .Or.EqualTo("[Message:MultiSourceWeaveSameLoggerNoTrace] Message")
-            .Or.EqualTo("[Error  :MultiSourceWeaveSameLoggerNoTrace] Error")
-            .Or.EqualTo("[Fatal  :MultiSourceWeaveSameLoggerNoTrace] Fatal")
-            .Or.EqualTo("[Warning:MultiSourceWeaveSameLoggerNoTrace] Warning")
-            .Or.EqualTo("[Info   :MultiSourceWeaveSameLoggerNoTrace] Info")
-            .Or.EqualTo("[Debug  :MultiSourceWeaveSameLoggerNoTrace] Debug")
-            .Or.EqualTo("[Message:MultiSourceWeaveSameLoggerNoTrace] Message")
-            .Or.EqualTo("[Error  :MultiSourceWeaveSameLoggerNoTrace] Error")
-            .Or.EqualTo("[Fatal  :MultiSourceWeaveSameLoggerNoTrace] Fatal")
-            .Or.EqualTo("[Warning:MultiSourceWeaveSameLoggerNoTrace] Warning")
-            .Or.EqualTo("[Info   :MultiSourceWeaveSameLoggerNoTrace] Info")
-            .Or.EqualTo("[Debug  :MultiSourceWeaveSameLoggerNoTrace] Debug")
-            .Or.EqualTo("[Message:MultiSourceWeaveSameLoggerNoTrace] Message")
-            .Or.EqualTo("[Error  :MultiSourceWeaveSameLoggerNoTrace] Error")
-            .Or.EqualTo("[Fatal  :MultiSourceWeaveSameLoggerNoTrace] Fatal")
-            .Or.EqualTo("[Warning:MultiSourceWeaveSameLoggerNoTrace] Warning")
-        );
-      }
-
-      var lines = File.ReadAllLines(logFileInfoA.FullName);
-      Assert.That(lines, Has.Length.EqualTo(300), $"lines.Length : {lines.Length}");
+      Assert.That(logFileInfoA.Exists, Is.False, $"logFileInfoA.Exists : {logFileInfoA.Exists}, {logFileInfoA.FullName}");
     }
   }
 }

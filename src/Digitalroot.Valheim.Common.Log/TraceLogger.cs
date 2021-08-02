@@ -14,7 +14,7 @@ namespace Digitalroot.Valheim.Common
     internal readonly ManualLogSource LoggerRef;
     private readonly string _source;
     private readonly FileInfo _traceFileInfo;
-    public bool IsTraceEnabled { get; }
+    public bool IsTraceEnabled { get; private set; }
 
     public TraceLogger(string source, bool enableTrace)
     {
@@ -30,6 +30,17 @@ namespace Digitalroot.Valheim.Common
       }
 
       LoggerRef.LogEvent += OnLogEvent;
+    }
+
+
+    public void EnableTrace()
+    {
+      IsTraceEnabled = true;
+    }
+
+    public void DisableTrace()
+    {
+      IsTraceEnabled = false;
     }
 
     private void StopTrace()
