@@ -30,8 +30,16 @@ namespace Digitalroot.Valheim.Common
 
     public static void RegisterSource(ITraceableLogging sender)
     {
-      if (TraceLoggers.ContainsKey(sender.Source)) return;
-      TraceLoggers.Add(sender.Source, new TraceLogger(sender.Source, sender.EnableTrace));
+      if (TraceLoggers.ContainsKey(sender.Source) && TraceLoggers[sender.Source].IsTraceEnabled == sender.EnableTrace) return;
+      if (TraceLoggers.ContainsKey(sender.Source) && !sender.EnableTrace) return;
+      if (TraceLoggers.ContainsKey(sender.Source) && sender.EnableTrace)
+      {
+        TraceLoggers[sender.Source].EnableTrace();
+      }
+      else
+      {
+        TraceLoggers.Add(sender.Source, new TraceLogger(sender.Source, sender.EnableTrace));
+      }
     }
     
     #region Logging
