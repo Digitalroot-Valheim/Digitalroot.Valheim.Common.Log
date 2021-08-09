@@ -6,6 +6,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Threading;
+using JetBrains.Annotations;
 
 namespace Digitalroot.Valheim.Common
 {
@@ -32,17 +33,18 @@ namespace Digitalroot.Valheim.Common
       LoggerRef.LogEvent += OnLogEvent;
     }
 
-
     public void EnableTrace()
     {
       IsTraceEnabled = true;
     }
 
+    [UsedImplicitly]
     public void DisableTrace()
     {
       IsTraceEnabled = false;
     }
 
+    [UsedImplicitly]
     private void StopTrace()
     {
       LoggerRef.LogEvent -= OnLogEvent;
@@ -56,6 +58,7 @@ namespace Digitalroot.Valheim.Common
       mutex.WaitOne();
       try
       {
+        // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
         if (e.Data is string)
         {
           File.AppendAllText(_traceFileInfo.FullName, $"[{e.Level,-7}:{e.Source.SourceName,10}] {e.Data}{Environment.NewLine}", Encoding.UTF8);
@@ -76,7 +79,7 @@ namespace Digitalroot.Valheim.Common
       get
       {
         string codeBase = Assembly.GetExecutingAssembly().CodeBase;
-        UriBuilder uri = new UriBuilder(codeBase);
+        var uri = new UriBuilder(codeBase);
         var fileInfo = new FileInfo(Uri.UnescapeDataString(uri.Path));
         return fileInfo.Directory;
       }

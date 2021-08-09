@@ -10,6 +10,7 @@ namespace Digitalroot.Valheim.Common
   /// </summary>
   public sealed class Log 
   {
+    // ReSharper disable once InconsistentNaming
     private static readonly Dictionary<string, TraceLogger> TraceLoggers = new();
 
     [UsedImplicitly] private static Log Instance { get; } = new();
