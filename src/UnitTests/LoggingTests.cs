@@ -84,7 +84,7 @@ namespace UnitTests
     public void TwoCodeBasesSameSourceTest()
     {
       var loggerA = new StaticSourceLogger("TwoCodeBasesSameSource", true);
-      var loggerB = new StaticSourceLogger("TwoCodeBasesSameSource", false);
+      var loggerB = new StaticSourceLogger("TwoCodeBasesSameSource");
       Log.RegisterSource(loggerA);
       Log.RegisterSource(loggerB);
       Log.Debug(loggerA, nameof(Log.Debug));

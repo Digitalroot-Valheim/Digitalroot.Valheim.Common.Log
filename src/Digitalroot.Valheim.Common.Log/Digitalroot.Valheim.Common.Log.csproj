@@ -44,4 +44,8 @@
     <PackageReference Include="Pfhoenix.Valheim.ModProjectReferences" Version="1.0.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\nkd\Source\Repos\ValheimModsAll\Digitalroot.Valheim.Common.Log\src\Digitalroot.Valheim.Common.Log\.editorconfig" />
+  </ItemGroup>
+
 </Project>
