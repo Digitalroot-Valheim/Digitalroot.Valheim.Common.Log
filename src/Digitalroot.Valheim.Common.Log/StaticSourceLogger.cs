@@ -24,6 +24,6 @@ namespace Digitalroot.Valheim.Common
     /// <inheritdoc />
     public bool EnableTrace { get; }
 
-#endregion
+    #endregion
   }
 }

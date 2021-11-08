@@ -21,8 +21,8 @@ namespace Digitalroot.Valheim.Common
       _source = source;
       IsTraceEnabled = enableTrace;
       LoggerRef = Logger.CreateLogSource(_source);
-      _traceFileInfo = new FileInfo(Path.Combine(Paths.BepInExRootPath ?? AssemblyDirectory.FullName, $"{_source}.Trace.log"));
-
+      _traceFileInfo = new FileInfo(Path.Combine(Paths.BepInExRootPath ?? AssemblyDirectory.FullName, "logs", $"{_source}.Trace.log"));
+      if (_traceFileInfo.DirectoryName != null) Directory.CreateDirectory(_traceFileInfo.DirectoryName);
       if (_traceFileInfo.Exists)
       {
         _traceFileInfo.Delete();

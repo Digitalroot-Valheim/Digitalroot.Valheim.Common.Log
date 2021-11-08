@@ -8,7 +8,7 @@ namespace Digitalroot.Valheim.Common
   /// <summary>
   /// License: "GNU Affero General Public License v3.0"
   /// </summary>
-  public sealed class Log 
+  public sealed class Log
   {
     private static readonly Dictionary<string, TraceLogger> TraceLoggers = new();
 
@@ -22,7 +22,7 @@ namespace Digitalroot.Valheim.Common
     {
       // Create Default TraceLogger
 #if DEBUG
-      TraceLoggers.Add(nameof(Digitalroot), new TraceLogger(nameof(Digitalroot), false));
+      TraceLoggers.Add(nameof(Digitalroot), new TraceLogger(nameof(Digitalroot), true));
 #else
       TraceLoggers.Add(nameof(Digitalroot), new TraceLogger(nameof(Digitalroot), false));
 #endif
@@ -41,29 +41,6 @@ namespace Digitalroot.Valheim.Common
         TraceLoggers.Add(sender.Source, new TraceLogger(sender.Source, sender.EnableTrace));
       }
     }
-    
-    #region Logging
-
-    [UsedImplicitly]
-    public static void Fatal(ITraceableLogging sender, Exception e, int i = 1)
-    {
-      Fatal(sender, $"Message: {e.Message}");
-      Fatal(sender, $"StackTrace: {e.StackTrace}");
-      Fatal(sender, $"Source: {e.Source}");
-      if (e.Data.Count > 0)
-      {
-        foreach (var key in e.Data.Keys)
-        {
-          Fatal(sender, $"key: {key}, value: {e.Data[key]}");
-        }
-      }
-
-      if (e.InnerException != null)
-      {
-        Fatal(sender, $"--- InnerException [{i}][Start] ---");
-        Fatal(sender, e.InnerException, ++i);
-      }
-    }
 
     private static TraceLogger GetTraceLogger(ITraceableLogging sender)
     {
@@ -71,9 +48,40 @@ namespace Digitalroot.Valheim.Common
     }
 
     [UsedImplicitly]
-    public static void Fatal(ITraceableLogging sender, object value)
+    public static void SetEnableTrace(ITraceableLogging sender, bool value)
     {
-      GetTraceLogger(sender).LoggerRef.LogFatal(value);
+      if (value)
+      {
+        GetTraceLogger(sender).EnableTrace();
+      }
+      else
+      {
+        GetTraceLogger(sender).DisableTrace();
+      }
+    }
+
+    [UsedImplicitly]
+    public static void SetEnableTraceForAllLoggers(bool value)
+    {
+      foreach (var traceLogger in TraceLoggers.Values)
+      {
+        if (value)
+        {
+          traceLogger.EnableTrace();
+        }
+        else
+        {
+          traceLogger.DisableTrace();
+        }
+      }
+    }
+
+    #region Logging
+
+    [UsedImplicitly]
+    public static void Debug(ITraceableLogging sender, object value)
+    {
+      GetTraceLogger(sender).LoggerRef.LogDebug(value);
     }
 
     [UsedImplicitly]
@@ -102,9 +110,36 @@ namespace Digitalroot.Valheim.Common
     }
 
     [UsedImplicitly]
-    public static void Warning(ITraceableLogging sender, object value)
+    public static void Info(ITraceableLogging sender, object value)
     {
-      GetTraceLogger(sender).LoggerRef.LogWarning(value);
+      GetTraceLogger(sender).LoggerRef.LogInfo(value);
+    }
+
+    [UsedImplicitly]
+    public static void Fatal(ITraceableLogging sender, Exception e, int i = 1)
+    {
+      Fatal(sender, $"Message: {e.Message}");
+      Fatal(sender, $"StackTrace: {e.StackTrace}");
+      Fatal(sender, $"Source: {e.Source}");
+      if (e.Data.Count > 0)
+      {
+        foreach (var key in e.Data.Keys)
+        {
+          Fatal(sender, $"key: {key}, value: {e.Data[key]}");
+        }
+      }
+
+      if (e.InnerException != null)
+      {
+        Fatal(sender, $"--- InnerException [{i}][Start] ---");
+        Fatal(sender, e.InnerException, ++i);
+      }
+    }
+
+    [UsedImplicitly]
+    public static void Fatal(ITraceableLogging sender, object value)
+    {
+      GetTraceLogger(sender).LoggerRef.LogFatal(value);
     }
 
     [UsedImplicitly]
@@ -114,24 +149,18 @@ namespace Digitalroot.Valheim.Common
     }
 
     [UsedImplicitly]
-    public static void Info(ITraceableLogging sender, object value)
-    {
-      GetTraceLogger(sender).LoggerRef.LogInfo(value);
-    }
-
-    [UsedImplicitly]
-    public static void Debug(ITraceableLogging sender, object value)
-    {
-      GetTraceLogger(sender).LoggerRef.LogDebug(value);
-    }
-
-    [UsedImplicitly]
     public static void Trace(ITraceableLogging sender, object value)
     {
       if (GetTraceLogger(sender).IsTraceEnabled || sender.EnableTrace)
       {
         GetTraceLogger(sender).LoggerRef.Log(LogLevel.All, value);
       }
+    }
+
+    [UsedImplicitly]
+    public static void Warning(ITraceableLogging sender, object value)
+    {
+      GetTraceLogger(sender).LoggerRef.LogWarning(value);
     }
 
     #endregion

@@ -177,10 +177,10 @@ namespace UnitTests
       System.Console.WriteLine(logFileInfoB.FullName);
       Assert.That(logFileInfoB, Is.Not.Null);
       Assert.That(logFileInfoB.Exists, Is.True);
-      
+
       using var fileStreamB = new FileStream(logFileInfoB.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 1024, FileOptions.None);
       using var streamReaderB = new StreamReader(fileStreamB, Encoding.UTF8);
-      
+
       while (!streamReaderB.EndOfStream)
       {
         string line = streamReaderB.ReadLine();
@@ -228,7 +228,7 @@ namespace UnitTests
       var loggerC = new StaticSourceLogger("loggerC");
       Log.RegisterSource(loggerC);
 
-      var loggers = new List<ITraceableLogging> {loggerA, loggerB, loggerC};
+      var loggers = new List<ITraceableLogging> { loggerA, loggerB, loggerC };
       Random rnd = new Random();
       for (int i = 0; i < 10; i++)
       {

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <AssemblyName>Digitalroot.Valheim.Common.Log</AssemblyName>
     <TargetFrameworks>netstandard2.1;net462;net472;net48</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>9</LangVersion>
     <PackageId>Digitalroot.Valheim.Common.Log</PackageId>
     <RootNamespace>Digitalroot.Valheim.Common</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -20,11 +20,11 @@
     <Company>Digitalroot Technologies</Company>
     <Product>Digitalroot Valheim Logging</Product>
     <Description>Logging for Valheim</Description>
-    <PackageReleaseNotes>Fixed IOException</PackageReleaseNotes>
+    <PackageReleaseNotes>Moved Traces to Log dir.</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <PackageVersion>1.1.6</PackageVersion>
-    <AssemblyVersion>1.1.6</AssemblyVersion>
-    <FileVersion>1.1.6</FileVersion>
+    <PackageVersion>1.1.7</PackageVersion>
+    <AssemblyVersion>1.1.7</AssemblyVersion>
+    <FileVersion>1.1.7</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.1|AnyCPU'">
