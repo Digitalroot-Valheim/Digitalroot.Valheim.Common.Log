@@ -1,8 +1,10 @@
+using BepInEx;
 using Digitalroot.Valheim.Common;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace UnitTests
@@ -22,7 +24,8 @@ namespace UnitTests
       Log.Warning(logger, nameof(Log.Warning));
       Log.Trace(logger, nameof(Log.Trace));
 
-      FileInfo logFileInfo = new FileInfo("Digitalroot.Trace.log");
+      // FileInfo logFileInfo = new FileInfo("Digitalroot.Trace.log");
+      FileInfo logFileInfo = new FileInfo(Path.Combine(Paths.BepInExRootPath ?? AssemblyDirectory.FullName, "logs", $"{logger.Source}.Trace.log"));
       System.Console.WriteLine(logFileInfo.FullName);
       Assert.That(logFileInfo, Is.Not.Null);
       Assert.That(logFileInfo.Exists, Is.True, $"logFileInfo.Exists : {logFileInfo.Exists}, {logFileInfo.FullName}");
@@ -57,7 +60,7 @@ namespace UnitTests
       Log.Warning(logger, nameof(Log.Warning));
       Log.Trace(logger, nameof(Log.Trace));
 
-      FileInfo logFileInfo = new FileInfo("LogTest.Trace.log");
+      FileInfo logFileInfo = new FileInfo(Path.Combine(Paths.BepInExRootPath ?? AssemblyDirectory.FullName, "logs", $"{logger.Source}.Trace.log"));
       System.Console.WriteLine(logFileInfo.FullName);
       Assert.That(logFileInfo, Is.Not.Null, $"logFileInfo != null : {logFileInfo != null}");
       Assert.That(logFileInfo.Exists, Is.True, $"logFileInfo.Exists : {logFileInfo.Exists}, {logFileInfo.FullName}");
@@ -92,7 +95,8 @@ namespace UnitTests
       Log.Trace(loggerA, nameof(Log.Trace));
       Log.Trace(loggerB, nameof(Log.Trace));
 
-      FileInfo logFileInfo = new FileInfo("TwoCodeBasesSameSource.Trace.log");
+      // FileInfo logFileInfo = new FileInfo("TwoCodeBasesSameSource.Trace.log");
+      FileInfo logFileInfo = new FileInfo(Path.Combine(Paths.BepInExRootPath ?? AssemblyDirectory.FullName, "logs", $"{loggerA.Source}.Trace.log"));
       System.Console.WriteLine(logFileInfo.FullName);
       Assert.That(logFileInfo, Is.Not.Null, $"logFileInfo != null : {logFileInfo != null}");
       Assert.That(logFileInfo.Exists, Is.True, $"logFileInfo.Exists : {logFileInfo.Exists}, {logFileInfo.FullName}");
@@ -151,7 +155,8 @@ namespace UnitTests
       Log.Warning(loggerC, nameof(Log.Warning));
       Log.Trace(loggerC, nameof(Log.Trace));
 
-      FileInfo logFileInfoA = new FileInfo("loggerA.Trace.log");
+      // FileInfo logFileInfoA = new FileInfo("loggerA.Trace.log");
+      FileInfo logFileInfoA = new FileInfo(Path.Combine(Paths.BepInExRootPath ?? AssemblyDirectory.FullName, "logs", $"{loggerA.Source}.Trace.log"));
       System.Console.WriteLine(logFileInfoA.FullName);
       Assert.That(logFileInfoA, Is.Not.Null);
       Assert.That(logFileInfoA.Exists, Is.True);
@@ -173,7 +178,8 @@ namespace UnitTests
         );
       }
 
-      FileInfo logFileInfoB = new FileInfo("loggerB.Trace.log");
+      // FileInfo logFileInfoB = new FileInfo("loggerB.Trace.log");
+      FileInfo logFileInfoB = new FileInfo(Path.Combine(Paths.BepInExRootPath ?? AssemblyDirectory.FullName, "logs", $"{loggerB.Source}.Trace.log"));
       System.Console.WriteLine(logFileInfoB.FullName);
       Assert.That(logFileInfoB, Is.Not.Null);
       Assert.That(logFileInfoB.Exists, Is.True);
@@ -195,7 +201,8 @@ namespace UnitTests
         );
       }
 
-      FileInfo logFileInfoC = new FileInfo("loggerC.Trace.log");
+      // FileInfo logFileInfoC = new FileInfo("loggerC.Trace.log");
+      FileInfo logFileInfoC = new FileInfo(Path.Combine(Paths.BepInExRootPath ?? AssemblyDirectory.FullName, "logs", $"{loggerC.Source}.Trace.log"));
       System.Console.WriteLine(logFileInfoC.FullName);
       Assert.That(logFileInfoC, Is.Not.Null);
       Assert.That(logFileInfoC.Exists, Is.True);
@@ -221,11 +228,11 @@ namespace UnitTests
     [Test(Author = "Digitalroot", Description = "Tests logging with a custom source.", TestOf = typeof(Log)), Timeout(500)]
     public void MultiSourceWeaveTest()
     {
-      var loggerA = new StaticSourceLogger("loggerA");
+      var loggerA = new StaticSourceLogger("loggerA", true);
       Log.RegisterSource(loggerA);
-      var loggerB = new StaticSourceLogger("loggerB");
+      var loggerB = new StaticSourceLogger("loggerB", true);
       Log.RegisterSource(loggerB);
-      var loggerC = new StaticSourceLogger("loggerC");
+      var loggerC = new StaticSourceLogger("loggerC", true);
       Log.RegisterSource(loggerC);
 
       var loggers = new List<ITraceableLogging> { loggerA, loggerB, loggerC };
@@ -269,7 +276,8 @@ namespace UnitTests
         Log.Trace(loggers[rnd.Next(0, 3)], nameof(Log.Trace));
       }
 
-      FileInfo logFileInfoA = new FileInfo("loggerA.Trace.log");
+      // FileInfo logFileInfoA = new FileInfo("loggerA.Trace.log");
+      FileInfo logFileInfoA = new FileInfo(Path.Combine(Paths.BepInExRootPath ?? AssemblyDirectory.FullName, "logs", $"{loggerA.Source}.Trace.log"));
       System.Console.WriteLine(logFileInfoA.FullName);
       Assert.That(logFileInfoA, Is.Not.Null);
       Assert.That(logFileInfoA.Exists, Is.True);
@@ -291,7 +299,8 @@ namespace UnitTests
         );
       }
 
-      FileInfo logFileInfoB = new FileInfo("loggerB.Trace.log");
+      // FileInfo logFileInfoB = new FileInfo("loggerB.Trace.log");
+      FileInfo logFileInfoB = new FileInfo(Path.Combine(Paths.BepInExRootPath ?? AssemblyDirectory.FullName, "logs", $"{loggerB.Source}.Trace.log"));
       System.Console.WriteLine(logFileInfoB.FullName);
       Assert.That(logFileInfoB, Is.Not.Null);
       Assert.That(logFileInfoB.Exists, Is.True);
@@ -313,7 +322,8 @@ namespace UnitTests
         );
       }
 
-      FileInfo logFileInfoC = new FileInfo("loggerC.Trace.log");
+      // FileInfo logFileInfoC = new FileInfo("loggerC.Trace.log");
+      FileInfo logFileInfoC = new FileInfo(Path.Combine(Paths.BepInExRootPath ?? AssemblyDirectory.FullName, "logs", $"{loggerC.Source}.Trace.log"));
       System.Console.WriteLine(logFileInfoC.FullName);
       Assert.That(logFileInfoC, Is.Not.Null);
       Assert.That(logFileInfoC.Exists, Is.True);
@@ -388,7 +398,8 @@ namespace UnitTests
         Log.Trace(loggers[rnd.Next(0, 3)], nameof(Log.Trace));
       }
 
-      FileInfo logFileInfoA = new FileInfo("MultiSourceWeaveSameLogger.Trace.log");
+      // FileInfo logFileInfoA = new FileInfo("MultiSourceWeaveSameLogger.Trace.log");
+      FileInfo logFileInfoA = new FileInfo(Path.Combine(Paths.BepInExRootPath ?? AssemblyDirectory.FullName, "logs", $"{loggerA.Source}.Trace.log"));
       System.Console.WriteLine(logFileInfoA.FullName);
       Assert.That(logFileInfoA, Is.Not.Null);
       Assert.That(logFileInfoA.Exists, Is.True);
@@ -484,6 +495,17 @@ namespace UnitTests
       System.Console.WriteLine(logFileInfoA.FullName);
       Assert.That(logFileInfoA, Is.Not.Null);
       Assert.That(logFileInfoA.Exists, Is.False, $"logFileInfoA.Exists : {logFileInfoA.Exists}, {logFileInfoA.FullName}");
+    }
+
+    private DirectoryInfo AssemblyDirectory
+    {
+      get
+      {
+        string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+        UriBuilder uri = new UriBuilder(codeBase);
+        var fileInfo = new FileInfo(Uri.UnescapeDataString(uri.Path));
+        return fileInfo.Directory;
+      }
     }
   }
 }
