@@ -47,12 +47,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Digitalroot.Valheim.Common.Json" Version="1.0.11">
-      <IncludeAssets>compile</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Pfhoenix.Valheim.ModProjectReferences" Version="1.0.10">
-      <IncludeAssets>compile</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="BepInEx.BaseLib" Version="5.4.16" />
+    <PackageReference Include="Digitalroot.Valheim.Common.Json" Version="1.0.11" />
   </ItemGroup>
 
 </Project>
