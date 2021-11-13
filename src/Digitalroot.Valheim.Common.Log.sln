@@ -17,17 +17,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{EE8C6082-0ACC-4DC0-B336-BEF6D6C40D69}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{AA57894F-75DA-4F08-9045-03605815FB7F}"
-	ProjectSection(SolutionItems) = preProject
-		..\.github\release-drafter.yml = ..\.github\release-drafter.yml
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{66F61AAD-E15A-473F-8B2E-12FE0796D886}"
-	ProjectSection(SolutionItems) = preProject
-		..\.github\workflows\ci.yml = ..\.github\workflows\ci.yml
-		..\.github\workflows\drafter.yml = ..\.github\workflows\drafter.yml
-		..\.github\workflows\publish.yml = ..\.github\workflows\publish.yml
-		..\.github\workflows\test-report.yml = ..\.github\workflows\test-report.yml
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
