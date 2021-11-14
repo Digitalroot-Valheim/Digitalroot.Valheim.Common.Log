@@ -22,6 +22,7 @@
     <Description>Logging for Valheim</Description>
     <PackageReleaseNotes>Moved Traces to Log dir.</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <VersionPrefix>1.0.0</VersionPrefix>
     <RestoreAdditionalProjectSources>
 	    https://nuget.bepinex.dev/v3/index.json;
@@ -48,6 +49,7 @@
 
   <ItemGroup>
     <PackageReference Include="BepInEx.BaseLib" Version="5.4.16" />
+    <PackageReference Include="BepInEx.Core" Version="5.4.16" />
     <PackageReference Include="Digitalroot.Valheim.Common.Json" Version="1.0.11" />
   </ItemGroup>
 
