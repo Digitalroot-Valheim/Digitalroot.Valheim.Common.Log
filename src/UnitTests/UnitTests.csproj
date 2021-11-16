@@ -1,29 +1,29 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net462</TargetFramework>
-		<LangVersion>9</LangVersion>
-		<IsPackable>false</IsPackable>
-		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-		<VersionPrefix>1.0.0</VersionPrefix>
-		<RestoreAdditionalProjectSources>
-			https://nuget.bepinex.dev/v3/index.json;
-			https://digitalroot-valheim-nuget.s3.us-west-2.amazonaws.com/index.json
-		</RestoreAdditionalProjectSources>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <LangVersion>9</LangVersion>
+    <IsPackable>false</IsPackable>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <RestoreAdditionalProjectSources>
+      https://nuget.bepinex.dev/v3/index.json;
+      https://digitalroot-valheim-nuget.s3.us-west-2.amazonaws.com/index.json
+    </RestoreAdditionalProjectSources>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="BepInEx.BaseLib" Version="5.4.16" />
-		<PackageReference Include="NUnit" Version="3.13.2" />
-		<PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
-		<PackageReference Include="NunitXml.TestLogger" Version="3.0.117">
-			<IncludeAssets>compile</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BepInEx.BaseLib" Version="5.4.16" />
+    <PackageReference Include="NUnit" Version="3.13.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.1.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Include="NunitXml.TestLogger" Version="3.0.117">
+      <IncludeAssets>compile</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\Digitalroot.Valheim.Common.Log\Digitalroot.Valheim.Common.Log.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Digitalroot.Valheim.Common.Log\Digitalroot.Valheim.Common.Log.csproj" />
+  </ItemGroup>
 
 </Project>
