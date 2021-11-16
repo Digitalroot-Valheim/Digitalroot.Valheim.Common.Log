@@ -50,7 +50,7 @@
   <ItemGroup>
     <PackageReference Include="BepInEx.BaseLib" Version="5.4.16" />
     <PackageReference Include="BepInEx.Core" Version="5.4.16" />
-    <PackageReference Include="Digitalroot.Valheim.Common.Json" Version="1.0.11" />
+    <PackageReference Include="Digitalroot.Valheim.Common.Json" Version="1.0.13" />
   </ItemGroup>
 
 </Project>
