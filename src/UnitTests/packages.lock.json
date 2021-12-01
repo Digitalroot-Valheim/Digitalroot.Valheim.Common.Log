@@ -35,15 +35,6 @@
         "resolved": "3.0.117",
         "contentHash": "+AEoIB71gu6R2QXzAs68MLlceLgo0T9hcL8yWGUi+UzozsDMIjHGKhqDqgCFwtO8UcXAJBaFNkK9o0gtFaLTSw=="
       },
-      "BepInEx.Core": {
-        "type": "Transitive",
-        "resolved": "5.4.16",
-        "contentHash": "ywMFKW0SInV5U8h3mluStFI2xTJdrIaL8PLgrUMMhEA17NUZOKj8ZdlTu1Qoz6QJQslhp7b6KtwTOJXuAy9D+Q==",
-        "dependencies": {
-          "BepInEx.BaseLib": "5.4.16",
-          "HarmonyX": "2.5.5"
-        }
-      },
       "Digitalroot.Valheim.Common.Json": {
         "type": "Transitive",
         "resolved": "1.0.14",
@@ -58,40 +49,10 @@
         "resolved": "2.4.0.4",
         "contentHash": "lbxY+miTOvCNbNfOk8HcbmBD9F6wv2dRKZlMjtJBm6rjA5vFKXBYtR6eoIe96HnCHOE1nCJbMsaZDKGNPg5mIA=="
       },
-      "HarmonyX": {
-        "type": "Transitive",
-        "resolved": "2.5.5",
-        "contentHash": "sQTQhNCwbob8JnnLsJibcorfjQGi2ziseb8uIOtyWrIv/RrbH1bJiwwX6hyLHCrgLMbzBd5Z15SukTXlmfcYLQ==",
-        "dependencies": {
-          "MonoMod.RuntimeDetour": "21.8.19.1"
-        }
-      },
       "Microsoft.CodeCoverage": {
         "type": "Transitive",
         "resolved": "17.0.0",
         "contentHash": "+B+09FPYBtf+cXfZOPIgpnP5mzLq5QdlBo+JEFy9CdqBaWHWE/YMY0Mos9uDsZhcgFegJm9GigAgMyqBZyfq+Q=="
-      },
-      "Mono.Cecil": {
-        "type": "Transitive",
-        "resolved": "0.11.4",
-        "contentHash": "IC1h5g0NeJGHIUgzM1P82ld57knhP0IcQfrYITDPXlNpMYGUrsG5TxuaWTjaeqDNQMBDNZkB8L0rBnwsY6JHuQ=="
-      },
-      "MonoMod.RuntimeDetour": {
-        "type": "Transitive",
-        "resolved": "21.8.19.1",
-        "contentHash": "fUEvDK4q9n+GAAB29vFKAsUIwhKAvZTVbn2WJemzLxbiTElutZ55ytUQxSSv6XhiRaJXrl5bSArO54PY0QNplw==",
-        "dependencies": {
-          "Mono.Cecil": "0.11.4",
-          "MonoMod.Utils": "21.8.19.1"
-        }
-      },
-      "MonoMod.Utils": {
-        "type": "Transitive",
-        "resolved": "21.8.19.1",
-        "contentHash": "HsH5TBMUdJmQtdINdYFG5a3BvCeGPezDX42qgv+h539drpNdD+qE7/NT6BtcmDI+y6VSVClFdnzcVNrOvTSfWQ==",
-        "dependencies": {
-          "Mono.Cecil": "0.11.4"
-        }
       },
       "UnityEngine.Modules": {
         "type": "Transitive",
@@ -101,7 +62,6 @@
       "digitalroot.valheim.common.log": {
         "type": "Project",
         "dependencies": {
-          "BepInEx.Core": "5.4.16",
           "Digitalroot.Valheim.Common.Json": "1.0.14"
         }
       }
