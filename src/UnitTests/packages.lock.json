@@ -46,8 +46,8 @@
       },
       "Digitalroot.Valheim.Common.Json": {
         "type": "Transitive",
-        "resolved": "1.0.13",
-        "contentHash": "OQAKK7D9+HHYSy8wi87C7s++6TFiTlE6oFPe1oqnO737ZUEQ1Ja0hb5AKjucaES9NdT9di7mk3sg48ajmv4RIQ==",
+        "resolved": "1.0.14",
+        "contentHash": "4ogco1dwkUwExMfr23rV69SH6KqgyUA4P+Vtims8K53WPg8+5IIf6vHfcnk9HMrKxMm53CA83BVYlemL0grwkg==",
         "dependencies": {
           "UnityEngine.Modules": "[2019.4.32]",
           "fastJSON": "2.4.0.4"
@@ -101,9 +101,8 @@
       "digitalroot.valheim.common.log": {
         "type": "Project",
         "dependencies": {
-          "BepInEx.BaseLib": "5.4.16",
           "BepInEx.Core": "5.4.16",
-          "Digitalroot.Valheim.Common.Json": "1.0.13"
+          "Digitalroot.Valheim.Common.Json": "1.0.14"
         }
       }
     }

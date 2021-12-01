@@ -76,7 +76,7 @@ namespace Digitalroot.Valheim.Common
       get
       {
         string codeBase = Assembly.GetExecutingAssembly().CodeBase;
-        UriBuilder uri = new UriBuilder(codeBase);
+        UriBuilder uri = new(codeBase);
         var fileInfo = new FileInfo(Uri.UnescapeDataString(uri.Path));
         return fileInfo.Directory;
       }

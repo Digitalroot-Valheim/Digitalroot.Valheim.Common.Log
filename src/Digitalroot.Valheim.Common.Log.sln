@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31424.327
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3650870F-CC1F-40E9-AB53-30A82AAF1174}"
 	ProjectSection(SolutionItems) = preProject
+		..\.gitattributes = ..\.gitattributes
 		..\.gitignore = ..\.gitignore
+		..\LICENSE = ..\LICENSE
 		ico\ValheimRcon_black.ico = ico\ValheimRcon_black.ico
 		ico\ValheimRcon_black.png = ico\ValheimRcon_black.png
 	EndProjectSection
@@ -23,7 +25,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{588E9B86-77E1-4417-A995-CA5107E783A7}"
 	ProjectSection(SolutionItems) = preProject
-		..\docs\LICENSE = ..\docs\LICENSE
 		..\docs\README.md = ..\docs\README.md
 	EndProjectSection
 EndProject
