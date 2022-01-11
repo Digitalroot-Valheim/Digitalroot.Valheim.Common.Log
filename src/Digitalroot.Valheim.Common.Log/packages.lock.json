@@ -4,11 +4,11 @@
     ".NETFramework,Version=v4.6.2": {
       "BepInEx.Core": {
         "type": "Direct",
-        "requested": "[5.4.16, )",
-        "resolved": "5.4.16",
-        "contentHash": "ywMFKW0SInV5U8h3mluStFI2xTJdrIaL8PLgrUMMhEA17NUZOKj8ZdlTu1Qoz6QJQslhp7b6KtwTOJXuAy9D+Q==",
+        "requested": "[5.4.17, )",
+        "resolved": "5.4.17",
+        "contentHash": "f0UCf6tZxdhPrcHAgj/wQNz5V9RAAV0elgvgaFl8wFjaEdiKLxepkxdV0Y8Xuprm+AVrQUGcaSIhTBQvpRzk+g==",
         "dependencies": {
-          "BepInEx.BaseLib": "5.4.16",
+          "BepInEx.BaseLib": "5.4.17",
           "HarmonyX": "2.5.5"
         }
       },
@@ -24,8 +24,8 @@
       },
       "BepInEx.BaseLib": {
         "type": "Transitive",
-        "resolved": "5.4.16",
-        "contentHash": "DydXiAQqbb1mqC++WlwYqwJ5DN7o+jM8LSQ8P43t82WCAkJFny0ode48brrD6vilDQuxZ621SOK9uuI3xo3Gyg=="
+        "resolved": "5.4.17",
+        "contentHash": "92N4BKDiF9KO8kXbY2+zp7dHNXZP3WBKhzw7U8orcYncutD7peHtuLfUdMW4PGY/d0SsoA5eOcBeklFuh7OS8A=="
       },
       "fastJSON": {
         "type": "Transitive",

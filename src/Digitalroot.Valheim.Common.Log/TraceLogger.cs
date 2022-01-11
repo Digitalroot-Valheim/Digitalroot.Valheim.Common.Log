@@ -82,11 +82,11 @@ namespace Digitalroot.Valheim.Common
       {
         case LogLevel.Fatal:
         case LogLevel.Error:
-          Trace.TraceError(msg);
+          Trace.TraceError($"WriteTrace.TraceError: {msg}\n");
           break;
 
         case LogLevel.Warning:
-          Trace.TraceWarning(msg);
+          Trace.TraceWarning($"WriteTrace.TraceWarning: {msg}\n");
           break;
 
         case LogLevel.None:
@@ -94,7 +94,7 @@ namespace Digitalroot.Valheim.Common
         case LogLevel.Info:
         case LogLevel.Debug:
         case LogLevel.All:
-          Trace.TraceInformation(msg);
+          Trace.TraceInformation($"WriteTrace.TraceWarning: {msg}\n");
           break;
 
         default:
