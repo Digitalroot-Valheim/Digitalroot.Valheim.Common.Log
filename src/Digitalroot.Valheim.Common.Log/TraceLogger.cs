@@ -61,13 +61,13 @@ namespace Digitalroot.Valheim.Common
         {
           var msg = $"[{e.Level,-7}:{e.Source.SourceName,10}] {e.Data}{Environment.NewLine}";
           File.AppendAllText(_traceFileInfo.FullName, msg, Encoding.UTF8);
-          WriteTrace(msg, e);
+          // WriteTrace(msg, e);
         }
         else
         {
           var msg = $"[{e.Level,-7}:{e.Source.SourceName,10}] {JsonSerializationProvider.ToJson(e.Data)}{Environment.NewLine}";
           File.AppendAllText(_traceFileInfo.FullName, msg, Encoding.UTF8);
-          WriteTrace(msg, e);
+          // WriteTrace(msg, e);
         }
       }
       finally
