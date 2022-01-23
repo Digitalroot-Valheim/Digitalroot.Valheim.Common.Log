@@ -2,7 +2,6 @@
 using BepInEx.Logging;
 using Digitalroot.Valheim.Common.Json;
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -61,46 +60,17 @@ namespace Digitalroot.Valheim.Common
         {
           var msg = $"[{e.Level,-7}:{e.Source.SourceName,10}] {e.Data}{Environment.NewLine}";
           File.AppendAllText(_traceFileInfo.FullName, msg, Encoding.UTF8);
-          // WriteTrace(msg, e);
         }
         else
         {
           var msg = $"[{e.Level,-7}:{e.Source.SourceName,10}] {JsonSerializationProvider.ToJson(e.Data)}{Environment.NewLine}";
           File.AppendAllText(_traceFileInfo.FullName, msg, Encoding.UTF8);
-          // WriteTrace(msg, e);
         }
       }
       finally
       {
         mutex.ReleaseMutex();
       }
-    }
-
-    private void WriteTrace(string msg, LogEventArgs e)
-    {
-      switch (e.Level)
-      {
-        case LogLevel.Fatal:
-        case LogLevel.Error:
-          Trace.TraceError($"WriteTrace.TraceError: {msg}\n");
-          break;
-
-        case LogLevel.Warning:
-          Trace.TraceWarning($"WriteTrace.TraceWarning: {msg}\n");
-          break;
-
-        case LogLevel.None:
-        case LogLevel.Message:
-        case LogLevel.Info:
-        case LogLevel.Debug:
-        case LogLevel.All:
-          Trace.TraceInformation($"WriteTrace.TraceWarning: {msg}\n");
-          break;
-
-        default:
-          throw new ArgumentOutOfRangeException();
-      }
-      
     }
 
     private DirectoryInfo AssemblyDirectory
