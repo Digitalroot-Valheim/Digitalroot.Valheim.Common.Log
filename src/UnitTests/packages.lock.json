@@ -4,43 +4,42 @@
     ".NETFramework,Version=v4.6.2": {
       "BepInEx.BaseLib": {
         "type": "Direct",
-        "requested": "[5.4.17, )",
-        "resolved": "5.4.17",
-        "contentHash": "92N4BKDiF9KO8kXbY2+zp7dHNXZP3WBKhzw7U8orcYncutD7peHtuLfUdMW4PGY/d0SsoA5eOcBeklFuh7OS8A=="
+        "requested": "[5.4.19, 5.4.19]",
+        "resolved": "5.4.19",
+        "contentHash": "gwP3NK0WL5E+U/L0FMrygiDDNzEL4TYnezy+S7ocbUUhkhty3ueG5BRsKdKdra/2R3vWopf42CoA+MnnEmSY+w=="
       },
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
-        "requested": "[17.0.0, )",
-        "resolved": "17.0.0",
-        "contentHash": "fJcnMY3jX1MzJvhGvUWauRhU5eQsOaHdwlrcnI3NabBhbi8WLAkMFI8d0YnewA/+b9q/U7vbhp8Xmh1vJ05FYQ==",
+        "requested": "[17.4.0, )",
+        "resolved": "17.4.0",
+        "contentHash": "VtNZQ83ntG2aEUjy1gq6B4HNdn96se6FmdY/03At8WiqDReGrApm6OB2fNiSHz9D6IIEtWtNZ2FSH0RJDVXl/w==",
         "dependencies": {
-          "Microsoft.CodeCoverage": "17.0.0"
+          "Microsoft.CodeCoverage": "17.4.0"
         }
       },
       "NUnit": {
         "type": "Direct",
-        "requested": "[3.13.2, )",
-        "resolved": "3.13.2",
-        "contentHash": "u+fz/lXyR4vlamySNAEMrXvh+GhAQiB6/aVZtU5WjivR5zF26Ui0tfteDtWqT90k9D8y6g8rFKYQC97Z7d195w=="
+        "requested": "[3.13.3, )",
+        "resolved": "3.13.3",
+        "contentHash": "KNPDpls6EfHwC3+nnA67fh5wpxeLb3VLFAfLxrug6JMYDLHH6InaQIWR7Sc3y75d/9IKzMksH/gi08W7XWbmnQ=="
       },
       "NUnit3TestAdapter": {
         "type": "Direct",
-        "requested": "[4.2.0, )",
-        "resolved": "4.2.0",
-        "contentHash": "srJGb2SExp0Y77p85cDYl/OlfMjxN/jXPh/CQpQOQWiWpnSSPV9I/jtMNJWr1uzqed23rLYYetGgUrwSZUHgfg=="
+        "requested": "[4.3.1, )",
+        "resolved": "4.3.1",
+        "contentHash": "R+bGFtsUpLWywjT1nb3xMmoVa2AIw6ClIGC+XjW9lYE8hwJeos+NdR/mtg4RXbBphmC9epALrnUc6MM7mUG8+Q=="
       },
       "NunitXml.TestLogger": {
         "type": "Direct",
-        "requested": "[3.0.117, )",
-        "resolved": "3.0.117",
-        "contentHash": "+AEoIB71gu6R2QXzAs68MLlceLgo0T9hcL8yWGUi+UzozsDMIjHGKhqDqgCFwtO8UcXAJBaFNkK9o0gtFaLTSw=="
+        "requested": "[3.0.127, )",
+        "resolved": "3.0.127",
+        "contentHash": "v8cEbYVSZGwCD6290yKeRCsRpOwYcgnng1YRrQKGgP79mHuxj1b1lpb6kA02QoLUM5/Qv9aDSLmS0U05m6HlJg=="
       },
       "Digitalroot.Valheim.Common.Json": {
         "type": "Transitive",
-        "resolved": "1.0.15",
-        "contentHash": "AHEPM0ApZBBf1H2TINqbNC7+iIzeYPJepxfYrmDwU20p5pwIC88w7Pm4k9A9UQPbnTeFX4qgtrzVKa3v145D1w==",
+        "resolved": "1.0.17",
+        "contentHash": "T8kx2sPxB7WG5lQUOJ9EVklRI/t5qVLEca4WNFs4FLZyS7jsTlk8GnglTqBKNILGjA/PDDBK9ZsqEsxcBRWdmQ==",
         "dependencies": {
-          "UnityEngine.Modules": "[2019.4.31]",
           "fastJSON": "2.4.0.4"
         }
       },
@@ -49,20 +48,21 @@
         "resolved": "2.4.0.4",
         "contentHash": "lbxY+miTOvCNbNfOk8HcbmBD9F6wv2dRKZlMjtJBm6rjA5vFKXBYtR6eoIe96HnCHOE1nCJbMsaZDKGNPg5mIA=="
       },
+      "JetBrains.Annotations": {
+        "type": "Transitive",
+        "resolved": "2022.3.1",
+        "contentHash": "11nsS3+lFICGkztVs9PP2NRItxf9fF+qD6xEW/T0YGto52zj07wseUeBdMAU1ah9HNVTDZyRC1u4NWdtJScwhw=="
+      },
       "Microsoft.CodeCoverage": {
         "type": "Transitive",
-        "resolved": "17.0.0",
-        "contentHash": "+B+09FPYBtf+cXfZOPIgpnP5mzLq5QdlBo+JEFy9CdqBaWHWE/YMY0Mos9uDsZhcgFegJm9GigAgMyqBZyfq+Q=="
-      },
-      "UnityEngine.Modules": {
-        "type": "Transitive",
-        "resolved": "2019.4.31",
-        "contentHash": "xZjdfGGzZw6nnrn4auRNis6WnAlsvqY1XXioEGJnSku+CylESgEt/sTLYlrbrQ0srnLfSCfx80vR8z4SsI1EuQ=="
+        "resolved": "17.4.0",
+        "contentHash": "2oZbSVTC2nAvQ2DnbXLlXS+c25ZyZdWeNd+znWwAxwGaPh9dwQ5NBsYyqQB7sKmJKIUdkKGmN3rzFzjVC81Dtg=="
       },
       "digitalroot.valheim.common.log": {
         "type": "Project",
         "dependencies": {
-          "Digitalroot.Valheim.Common.Json": "1.0.15"
+          "Digitalroot.Valheim.Common.Json": "[1.0.17, )",
+          "JetBrains.Annotations": "[2022.3.1, )"
         }
       }
     }
