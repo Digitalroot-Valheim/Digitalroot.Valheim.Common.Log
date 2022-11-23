@@ -35,35 +35,13 @@
         "resolved": "3.0.127",
         "contentHash": "v8cEbYVSZGwCD6290yKeRCsRpOwYcgnng1YRrQKGgP79mHuxj1b1lpb6kA02QoLUM5/Qv9aDSLmS0U05m6HlJg=="
       },
-      "Digitalroot.Valheim.Common.Json": {
-        "type": "Transitive",
-        "resolved": "1.0.17",
-        "contentHash": "T8kx2sPxB7WG5lQUOJ9EVklRI/t5qVLEca4WNFs4FLZyS7jsTlk8GnglTqBKNILGjA/PDDBK9ZsqEsxcBRWdmQ==",
-        "dependencies": {
-          "fastJSON": "2.4.0.4"
-        }
-      },
-      "fastJSON": {
-        "type": "Transitive",
-        "resolved": "2.4.0.4",
-        "contentHash": "lbxY+miTOvCNbNfOk8HcbmBD9F6wv2dRKZlMjtJBm6rjA5vFKXBYtR6eoIe96HnCHOE1nCJbMsaZDKGNPg5mIA=="
-      },
-      "JetBrains.Annotations": {
-        "type": "Transitive",
-        "resolved": "2022.3.1",
-        "contentHash": "11nsS3+lFICGkztVs9PP2NRItxf9fF+qD6xEW/T0YGto52zj07wseUeBdMAU1ah9HNVTDZyRC1u4NWdtJScwhw=="
-      },
       "Microsoft.CodeCoverage": {
         "type": "Transitive",
         "resolved": "17.4.0",
         "contentHash": "2oZbSVTC2nAvQ2DnbXLlXS+c25ZyZdWeNd+znWwAxwGaPh9dwQ5NBsYyqQB7sKmJKIUdkKGmN3rzFzjVC81Dtg=="
       },
       "digitalroot.valheim.common.log": {
-        "type": "Project",
-        "dependencies": {
-          "Digitalroot.Valheim.Common.Json": "[1.0.17, )",
-          "JetBrains.Annotations": "[2022.3.1, )"
-        }
+        "type": "Project"
       }
     }
   }
