@@ -9,7 +9,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
-    <Copyright>Copyright © Digitalroot Technologies 2021 - 2022</Copyright>
+    <Copyright>Copyright © Digitalroot Technologies 2021 - 2023</Copyright>
     <PackageProjectUrl>https://github.com/Digitalroot-Valheim/Digitalroot.Valheim.Common.Log</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Digitalroot-Valheim/Digitalroot.Valheim.Common.Log</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
