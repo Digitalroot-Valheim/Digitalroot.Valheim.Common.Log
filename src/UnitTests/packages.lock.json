@@ -8,6 +8,15 @@
         "resolved": "5.4.19",
         "contentHash": "gwP3NK0WL5E+U/L0FMrygiDDNzEL4TYnezy+S7ocbUUhkhty3ueG5BRsKdKdra/2R3vWopf42CoA+MnnEmSY+w=="
       },
+      "Digitalroot.Valheim.Common.Json": {
+        "type": "Direct",
+        "requested": "[1.0.17, )",
+        "resolved": "1.0.17",
+        "contentHash": "T8kx2sPxB7WG5lQUOJ9EVklRI/t5qVLEca4WNFs4FLZyS7jsTlk8GnglTqBKNILGjA/PDDBK9ZsqEsxcBRWdmQ==",
+        "dependencies": {
+          "fastJSON": "2.4.0.4"
+        }
+      },
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
         "requested": "[17.4.0, )",
@@ -34,6 +43,11 @@
         "requested": "[3.0.127, )",
         "resolved": "3.0.127",
         "contentHash": "v8cEbYVSZGwCD6290yKeRCsRpOwYcgnng1YRrQKGgP79mHuxj1b1lpb6kA02QoLUM5/Qv9aDSLmS0U05m6HlJg=="
+      },
+      "fastJSON": {
+        "type": "Transitive",
+        "resolved": "2.4.0.4",
+        "contentHash": "lbxY+miTOvCNbNfOk8HcbmBD9F6wv2dRKZlMjtJBm6rjA5vFKXBYtR6eoIe96HnCHOE1nCJbMsaZDKGNPg5mIA=="
       },
       "Microsoft.CodeCoverage": {
         "type": "Transitive",
