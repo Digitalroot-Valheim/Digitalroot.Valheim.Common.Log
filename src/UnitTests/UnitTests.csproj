@@ -23,9 +23,9 @@
     <PackageReference Include="NunitXml.TestLogger" Version="3.0.127">
       <IncludeAssets>compile</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Digitalroot.Valheim.Common.Json" Version="1.0.20">
+    <PackageReference Include="Digitalroot.Valheim.Common.Json" Version="1.0.21">
       <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>compile; runtime</IncludeAssets>
+      <IncludeAssets>runtime; compile</IncludeAssets>
     </PackageReference>
   </ItemGroup>
 
