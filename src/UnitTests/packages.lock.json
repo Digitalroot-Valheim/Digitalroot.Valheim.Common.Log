@@ -100,7 +100,10 @@
         }
       },
       "digitalroot.valheim.common.log": {
-        "type": "Project"
+        "type": "Project",
+        "dependencies": {
+          "Digitalroot.Valheim.Common.Json": "[1.0.20, )"
+        }
       }
     }
   }

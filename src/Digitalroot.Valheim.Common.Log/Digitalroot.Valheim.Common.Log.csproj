@@ -54,7 +54,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Digitalroot.Valheim.Common.Json" Version="1.0.20">
-      <PrivateAssets>all</PrivateAssets>
+      <PrivateAssets></PrivateAssets>
       <IncludeAssets>compile</IncludeAssets>
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
