@@ -14,11 +14,11 @@
       },
       "Digitalroot.Valheim.Common.Json": {
         "type": "Direct",
-        "requested": "[1.0.21, )",
-        "resolved": "1.0.21",
-        "contentHash": "CEK5oFdG5wEYRcQhtsh6b06ZfBg4ZxAZ3Y4vI3KLfht9IWQ3kIDaJKvw08htoPV91Et8spDXTR8gvowKY/k3bA==",
+        "requested": "[1.0.23, )",
+        "resolved": "1.0.23",
+        "contentHash": "bZXNqDjY5voyX239z/BtUXnMhIlD9sRvAB9rkVDcLu7ogMhQ1WVSNvvzD2QiupoGRaZRcgGOc4fkt+roTS46jA==",
         "dependencies": {
-          "Digitalroot.Valheim.Common.References": "0.212.11",
+          "Digitalroot.Valheim.Common.References": "0.212.12",
           "fastJSON": "2.4.0.4"
         }
       },
@@ -29,6 +29,15 @@
         "contentHash": "VtNZQ83ntG2aEUjy1gq6B4HNdn96se6FmdY/03At8WiqDReGrApm6OB2fNiSHz9D6IIEtWtNZ2FSH0RJDVXl/w==",
         "dependencies": {
           "Microsoft.CodeCoverage": "17.4.0"
+        }
+      },
+      "Microsoft.NETFramework.ReferenceAssemblies": {
+        "type": "Direct",
+        "requested": "[1.0.2, )",
+        "resolved": "1.0.2",
+        "contentHash": "5/cSEVld+px/CuRrbohO/djfg6++eR6zGpy88MgqloXvkj//WXWpFZyu/OpkXPN0u5m+dN/EVwLNYFUxD4h2+A==",
+        "dependencies": {
+          "Microsoft.NETFramework.ReferenceAssemblies.net462": "1.0.2"
         }
       },
       "NUnit": {
@@ -56,8 +65,8 @@
       },
       "Digitalroot.Valheim.Common.References": {
         "type": "Transitive",
-        "resolved": "0.212.11",
-        "contentHash": "3ePd5G9Nvts5j+4TMIpkPzogLMxTpw6W3l3ly4/Wpm4fuy2LYmXPo0EeLUZXMjbs9BxURdLGnmBSOORpinNy1Q=="
+        "resolved": "0.212.12",
+        "contentHash": "acxgyCNR9wbOzOlyf3d6Hv+H8vDOcOMwywGTkk4sZXvSS4A0aCjKljzLl2iAOkcpueyy68MikFhfHcGy8vEu1w=="
       },
       "fastJSON": {
         "type": "Transitive",
@@ -76,6 +85,11 @@
         "type": "Transitive",
         "resolved": "17.4.0",
         "contentHash": "2oZbSVTC2nAvQ2DnbXLlXS+c25ZyZdWeNd+znWwAxwGaPh9dwQ5NBsYyqQB7sKmJKIUdkKGmN3rzFzjVC81Dtg=="
+      },
+      "Microsoft.NETFramework.ReferenceAssemblies.net462": {
+        "type": "Transitive",
+        "resolved": "1.0.2",
+        "contentHash": "vnWMOt5+4SLOLu5hlB54LMK5OHqsX+5ekbo6vb7USvCM5uA4UKtATuMvIAw69ak62F94c+3895XwF5TcjjzpVw=="
       },
       "Mono.Cecil": {
         "type": "Transitive",
@@ -102,7 +116,7 @@
       "digitalroot.valheim.common.log": {
         "type": "Project",
         "dependencies": {
-          "Digitalroot.Valheim.Common.Json": "[1.0.21, )"
+          "Digitalroot.Valheim.Common.Json": "[1.0.23, )"
         }
       }
     }
