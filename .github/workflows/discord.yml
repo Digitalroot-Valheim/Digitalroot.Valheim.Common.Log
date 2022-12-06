@@ -1,8 +1,6 @@
 name: Discord Webhook
 
 on:
-  workflow_dispatch:
-
   push:
     branches: [ main ] # Default release branch
     paths:
@@ -11,13 +9,8 @@ on:
 
 jobs:
   discord:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Run Discord Webhook
-      uses: johnnyhuy/actions-discord-git-webhook@main
-      with:
-        webhook_url: ${{ secrets.VALHEIM_DISCORD_TITANS_WEBHOOK_URL }}
-        hide_links: false
-        censor_username: false
-        repo_name: ${{ github.event.repository.name }}
+    uses: Digitalroot-Valheim/.github/.github/workflows/discord.yml@main
+    with:
+      repo_name: ${{ github.repository }}
+    secrets:
+      webhook_url: ${{ secrets.VALHEIM_DISCORD_TITANS_WEBHOOK_URL }}
