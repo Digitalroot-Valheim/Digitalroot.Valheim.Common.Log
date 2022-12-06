@@ -15,9 +15,15 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
 
 jobs:
-  call-workflow-discord-hook:
-    uses: Digitalroot-Valheim/.github/.github/workflows/discord.yml@main
-    with:
-      repo_name: ${{ github.event.repository.name }}
-    secrets:
+
+  discord:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run Discord Webhook
+      uses: johnnyhuy/actions-discord-git-webhook@main
+      with:
         webhook_url: ${{ secrets.VALHEIM_DISCORD_TITANS_WEBHOOK_URL }}
+        hide_links: false
+        censor_username: false
+        repo_name: ${{ github.event.repository.name }}
