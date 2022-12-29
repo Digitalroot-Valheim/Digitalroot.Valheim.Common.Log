@@ -16,6 +16,9 @@ namespace Digitalroot.Valheim.Common
       EnableTrace = enableTrace;
     }
 
+    public static StaticSourceLogger PreMadeTraceableInstance = new(true);
+    public static StaticSourceLogger PreMadeNonTraceableInstance = new();
+
     #region Implementation of ITraceableLogging
 
     /// <inheritdoc />
