@@ -88,6 +88,7 @@ namespace Digitalroot.Valheim.Common
     public static void Error(ITraceableLogging sender, Exception e, int i = 1)
     {
       Error(sender, $"Message: {e.Message}");
+      Error(sender, $"TargetSite: {e.TargetSite}");
       Error(sender, $"StackTrace: {e.StackTrace}");
       Error(sender, $"Source: {e.Source}");
       if (e.Data.Count > 0)
@@ -119,6 +120,7 @@ namespace Digitalroot.Valheim.Common
     public static void Fatal(ITraceableLogging sender, Exception e, int i = 1)
     {
       Fatal(sender, $"Message: {e.Message}");
+      Fatal(sender, $"TargetSite: {e.TargetSite}");
       Fatal(sender, $"StackTrace: {e.StackTrace}");
       Fatal(sender, $"Source: {e.Source}");
       if (e.Data.Count > 0)
