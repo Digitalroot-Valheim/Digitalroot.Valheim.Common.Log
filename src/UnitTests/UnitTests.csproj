@@ -18,12 +18,12 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="NUnit" Version="3.13.3" />
-    <PackageReference Include="NUnit3TestAdapter" Version="4.3.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
-    <PackageReference Include="NunitXml.TestLogger" Version="3.0.127">
+    <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="NunitXml.TestLogger" Version="3.0.131">
       <IncludeAssets>compile</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Digitalroot.Valheim.Common.Json" Version="1.0.27">
+    <PackageReference Include="Digitalroot.Valheim.Common.Json" Version="1.0.28">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; compile</IncludeAssets>
     </PackageReference>
