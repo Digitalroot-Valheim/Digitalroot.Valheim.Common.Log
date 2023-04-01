@@ -13,8 +13,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BepInEx.Core" Version="[5.4.19]">
-      <IncludeAssets>compile; runtime</IncludeAssets>
+    <PackageReference Include="BepInEx.Core" Version="[5.4.21]">
+      <IncludeAssets>runtime; compile</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="NUnit" Version="3.13.3" />
