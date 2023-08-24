@@ -26,3 +26,4 @@ jobs:
       proj-file-name: Digitalroot.Valheim.Common.Log
       nuget-gh-upload: true
       nuget-s3-upload: true
+
