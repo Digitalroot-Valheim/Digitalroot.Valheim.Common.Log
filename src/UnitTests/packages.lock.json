@@ -14,18 +14,21 @@
       },
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
-        "requested": "[17.8.0, )",
-        "resolved": "17.8.0",
-        "contentHash": "BmTYGbD/YuDHmApIENdoyN1jCk0Rj1fJB0+B/fVekyTdVidr91IlzhqzytiUgaEAzL1ZJcYCme0MeBMYvJVzvw==",
+        "requested": "[17.9.0, )",
+        "resolved": "17.9.0",
+        "contentHash": "7GUNAUbJYn644jzwLm5BD3a2p9C1dmP8Hr6fDPDxgItQk9hBs1Svdxzz07KQ/UphMSmgza9AbijBJGmw5D658A==",
         "dependencies": {
-          "Microsoft.CodeCoverage": "17.8.0"
+          "Microsoft.CodeCoverage": "17.9.0"
         }
       },
       "NUnit": {
         "type": "Direct",
-        "requested": "[3.14.0, )",
-        "resolved": "3.14.0",
-        "contentHash": "R7iPwD7kbOaP3o2zldWJbWeMQAvDKD0uld27QvA3PAALl1unl7x0v2J7eGiJOYjimV/BuGT4VJmr45RjS7z4LA=="
+        "requested": "[4.1.0, )",
+        "resolved": "4.1.0",
+        "contentHash": "MT/DpAhjtiytzhTgTqIhBuWx4y26PKfDepYUHUM+5uv4TsryHC2jwFo5e6NhWkApCm/G6kZ80dRjdJFuAxq3rg==",
+        "dependencies": {
+          "System.Threading.Tasks.Extensions": "4.5.4"
+        }
       },
       "NUnit3TestAdapter": {
         "type": "Direct",
@@ -35,9 +38,9 @@
       },
       "NunitXml.TestLogger": {
         "type": "Direct",
-        "requested": "[3.1.15, )",
-        "resolved": "3.1.15",
-        "contentHash": "+h0e2T0B7rEePNTM8c7azpBTvmtIcwFMaKU85vUtqV6tqwnQ3e30VC9rnrzdnWCy1/QC7gmNDYEaCZlzZ1EVRA=="
+        "requested": "[3.1.20, )",
+        "resolved": "3.1.20",
+        "contentHash": "Pd9EYPNsQGaKYW+F+l7vTuvDjp8tzTYLqqfLM1Sz5WwLHhvnaJArQZjw/93WF3i07Rxb50WFVu0kjrjKCVFHDg=="
       },
       "BepInEx.BaseLib": {
         "type": "Transitive",
@@ -51,18 +54,18 @@
       },
       "Digitalroot.Valheim.Common.Json": {
         "type": "Transitive",
-        "resolved": "1.0.34",
-        "contentHash": "L7xiFHkundjUriPdJeqpy+V65EjaJpIrQu925VV1E1JbvL16jcVDY32Hj5HoREUEe1Tn8VJSYJBU6SJTqha2kw==",
+        "resolved": "1.0.35",
+        "contentHash": "gq2jtc+nPTnJUvvCp25pSSyV7ww46cWrIPD7svmiP6Bt3xOFx/B7Ig1sShdRqDVgrTc3ts5HAAzSF48fAwPP1w==",
         "dependencies": {
           "Digitalroot.References.Unity": "2022.3.12",
-          "Digitalroot.Valheim.Common.References": "0.217.30",
+          "Digitalroot.Valheim.Common.References": "0.218.9",
           "fastJSON": "2.4.0.4"
         }
       },
       "Digitalroot.Valheim.Common.References": {
         "type": "Transitive",
-        "resolved": "0.217.30",
-        "contentHash": "B1HHmPAlCire+YKJKYRiHpYRQHUyAiTrQtTujhua1AxQgMS6RCUlJ1kr3XNks3976gduuOsWJ2ydd6MHqLxRvA=="
+        "resolved": "0.218.9",
+        "contentHash": "dWJmBZrP0Zkb3YF2jea3flpg+GpkSLuUmtkWwrFosCDcskARxWBe93mL4Zfsy2Um0vJx1UfeWWyqgF6CKxGA1w=="
       },
       "fastJSON": {
         "type": "Transitive",
@@ -79,8 +82,8 @@
       },
       "Microsoft.CodeCoverage": {
         "type": "Transitive",
-        "resolved": "17.8.0",
-        "contentHash": "KC8SXWbGIdoFVdlxKk9WHccm0llm9HypcHMLUUFabRiTS3SO2fQXNZfdiF3qkEdTJhbRrxhdRxjL4jbtwPq4Ew=="
+        "resolved": "17.9.0",
+        "contentHash": "RGD37ZSrratfScYXm7M0HjvxMxZyWZL4jm+XgMZbkIY1UPgjUpbNA/t+WTGj/rC/0Hm9A3IrH3ywbKZkOCnoZA=="
       },
       "Mono.Cecil": {
         "type": "Transitive",
@@ -104,10 +107,23 @@
           "Mono.Cecil": "0.11.4"
         }
       },
+      "System.Runtime.CompilerServices.Unsafe": {
+        "type": "Transitive",
+        "resolved": "4.5.3",
+        "contentHash": "3TIsJhD1EiiT0w2CcDMN/iSSwnNnsrnbzeVHSKkaEgV85txMprmuO+Yq2AdSbeVGcg28pdNDTPK87tJhX7VFHw=="
+      },
+      "System.Threading.Tasks.Extensions": {
+        "type": "Transitive",
+        "resolved": "4.5.4",
+        "contentHash": "zteT+G8xuGu6mS+mzDzYXbzS7rd3K6Fjb9RiZlYlJPam2/hU7JCBZBVEcywNuR+oZ1ncTvc/cq0faRr3P01OVg==",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "4.5.3"
+        }
+      },
       "digitalroot.valheim.common.log": {
         "type": "Project",
         "dependencies": {
-          "Digitalroot.Valheim.Common.Json": "[1.0.34, )"
+          "Digitalroot.Valheim.Common.Json": "[1.0.35, )"
         }
       }
     }
