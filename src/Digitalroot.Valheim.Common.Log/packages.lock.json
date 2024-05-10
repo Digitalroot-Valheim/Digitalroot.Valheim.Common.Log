@@ -14,9 +14,9 @@
       },
       "Digitalroot.Valheim.Common.Json": {
         "type": "Direct",
-        "requested": "[1.0.38, )",
-        "resolved": "1.0.38",
-        "contentHash": "Vrb81evp7P+Z36hm6KfhPZSIPCzrgSo1cjwPLCUkw711T7uoMd/Qh5z86OB/Ah5vgmGkqXnXOdwWRlrPt2S2lg==",
+        "requested": "[1.0.39, )",
+        "resolved": "1.0.39",
+        "contentHash": "AOQJgndG4hoVNw3cD8lS/xLE+BQ3cRPO1PkcVy775Ryau96lmhcWfMaI6T7MHD0tVgOQnvnWkap+nlzZOS9XpQ==",
         "dependencies": {
           "Digitalroot.References.Unity": "2022.3.17",
           "System.Text.Json": "8.0.3"
