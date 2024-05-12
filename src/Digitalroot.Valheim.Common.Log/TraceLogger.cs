@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using Digitalroot.Valheim.Common.Json;
+using JetBrains.Annotations;
 using System;
 using System.IO;
 using System.Reflection;
@@ -43,7 +44,8 @@ namespace Digitalroot.Valheim.Common
       IsTraceEnabled = false;
     }
 
-    private void StopTrace()
+    [UsedImplicitly]
+    public void StopTrace()
     {
       LoggerRef.LogEvent -= OnLogEvent;
     }
@@ -63,7 +65,7 @@ namespace Digitalroot.Valheim.Common
         }
         else
         {
-          var msg = $"[{e.Level,-7}:{e.Source.SourceName,10}] {JsonSerializationProvider.ToJson(e.Data)}{Environment.NewLine}";
+          var msg = $"[{e.Level,-7}:{e.Source.SourceName,10}] {JsonSerializationProvider.Serialize(e.Data)}{Environment.NewLine}";
           File.AppendAllText(_traceFileInfo.FullName, msg, Encoding.UTF8);
         }
       }
