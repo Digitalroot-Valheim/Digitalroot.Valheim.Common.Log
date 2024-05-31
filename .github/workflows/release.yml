@@ -1,4 +1,4 @@
-name: NuGet Release
+name: Release
 
 concurrency: ci-${{ github.ref }}
 
@@ -7,9 +7,10 @@ on:
     branches: [ main ] # Default release branch
   push:
     branches: [ main ] # Default release branch
-    paths:
-      - 'src/**'   
-      - '.github/workflows/**' 
+    paths-ignore:
+      - '.github/**'
+      - 'docs/**'
+      - '**/*.sln'
 
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
