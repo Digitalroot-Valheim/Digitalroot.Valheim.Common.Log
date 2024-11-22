@@ -63,8 +63,8 @@
       },
       "Digitalroot.Valheim.Common.Json": {
         "type": "Transitive",
-        "resolved": "1.0.43",
-        "contentHash": "yPtT9Wop5Mdawp/9/EGeDjNaXhelITXQbRs27RAZIu3SCzD7X01q9veKYxZbFr/IapvKkP9CRxCFA86UIcejvA==",
+        "resolved": "1.0.44",
+        "contentHash": "JEwrz4JIIOKsxk9jxwLrG7uwwrBwllNq79jhh+1jyWYjlXjRn9LgFFyHDOgkwrV3LMPN4r8Tk3J9PE9r2XdMLw==",
         "dependencies": {
           "Digitalroot.References.Unity": "2022.3.17",
           "LibZ.Tool": "1.2.0"
@@ -131,7 +131,7 @@
       "digitalroot.valheim.common.log": {
         "type": "Project",
         "dependencies": {
-          "Digitalroot.Valheim.Common.Json": "[1.0.43, )"
+          "Digitalroot.Valheim.Common.Json": "[1.0.44, )"
         }
       }
     }
